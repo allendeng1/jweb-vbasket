@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FileStorage">
+<!--代码生成器会覆盖此文件，自定义SQL请写到query文件中-->
+
+  <resultMap id="FileStorage.ResultMap" type="com.jweb.dao.entity.FileStorage">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="app_id" jdbcType="bigint" property="appId" />
+    <result column="storage_site" jdbcType="character varying" property="storageSite" />
+    <result column="owner" jdbcType="character varying" property="owner" />
+    <result column="type" jdbcType="integer" property="type" />
+    <result column="storage_path" jdbcType="text" property="storagePath" />
+    <result column="file_type" jdbcType="character varying" property="fileType" />
+    <result column="file_name" jdbcType="character varying" property="fileName" />
+    <result column="file_size" jdbcType="bigint" property="fileSize" />
+    <result column="is_delete" jdbcType="boolean" property="isDelete" />
+    <result column="ctdate" jdbcType="bigint" property="ctdate" />
+    <result column="mddate" jdbcType="bigint" property="mddate" />
+  </resultMap>
+
+  <sql id="FileStorage.clounms">
+    id,app_id,storage_site,owner,type,storage_path,file_type,file_name,file_size,is_delete,ctdate,mddate
+  </sql>
+
+  <sql id="FileStorage.noidclounms">
+    app_id,storage_site,owner,type,storage_path,file_type,file_name,file_size,is_delete,ctdate,mddate
+  </sql>
+
+  <sql id="FileStorage.where">
+    <if test="id != null">
+      and id = #{id}
+    </if>
+    <if test="appId != null">
+      and app_id = #{appId}
+    </if>
+    <if test="storageSite != null">
+      and storage_site = #{storageSite}
+    </if>
+    <if test="owner != null">
+      and owner = #{owner}
+    </if>
+    <if test="type != null">
+      and type = #{type}
+    </if>
+    <if test="storagePath != null">
+      and storage_path = #{storagePath}
+    </if>
+    <if test="fileType != null">
+      and file_type = #{fileType}
+    </if>
+    <if test="fileName != null">
+      and file_name = #{fileName}
+    </if>
+    <if test="fileSize != null">
+      and file_size = #{fileSize}
+    </if>
+    <if test="isDelete != null">
+      and is_delete = #{isDelete}
+    </if>
+    <if test="ctdate != null">
+      and ctdate = #{ctdate}
+    </if>
+    <if test="mddate != null">
+      and mddate = #{mddate}
+    </if>
+    <if test="customCondition != null and customCondition != '' ">
+      and ${customCondition}
+    </if>
+  </sql>
+
+  <sql id="FileStorage.orderAndlimit">
+    <if test="orderCondition != null and orderCondition != '' ">
+      order by ${orderCondition}
+    </if>
+    <if test="limit != null and limit > 0 ">
+      <if test="offset != null and offset >= 0 ">
+        limit #{limit} offset #{offset}
+      </if>
+      <if test="offset == null or offset &lt; 0 ">
+        limit #{limit}
+      </if>
+    </if>
+  </sql>
+
+  <insert id="FileStorage.insert" parameterType="com.jweb.dao.entity.FileStorage" useGeneratedKeys="true" keyProperty="id">
+    insert into file_storage (<include refid="FileStorage.noidclounms" />) values (#{appId},#{storageSite},#{owner},#{type},#{storagePath},#{fileType},#{fileName},#{fileSize},#{isDelete},#{ctdate},#{mddate})
+  </insert>
+
+  <select id="FileStorage.selectIds" resultType="Long" parameterType="com.jweb.dao.entity.FileStorage">
+    select id from file_storage where 1=1
+    <include refid="FileStorage.where" />
+    <include refid="FileStorage.orderAndlimit" />
+  </select>
+
+  <select id="FileStorage.selectList" resultMap="FileStorage.ResultMap" parameterType="com.jweb.dao.entity.FileStorage">
+    select <include refid="FileStorage.clounms" /> from file_storage where 1=1
+    <include refid="FileStorage.where" />
+    <include refid="FileStorage.orderAndlimit" />
+  </select>
+
+  <select id="FileStorage.selectById" resultMap="FileStorage.ResultMap" parameterType="Long">
+    select <include refid="FileStorage.clounms" /> from file_storage where id=#{value}
+  </select>
+
+  <select id="FileStorage.selectCount" resultType="Integer" parameterType="com.jweb.dao.entity.FileStorage">
+    select count(*) from file_storage where 1=1
+    <include refid="FileStorage.where" />
+  </select>
+
+  <update id="FileStorage.updateById" parameterType="com.jweb.dao.entity.FileStorage">
+    update file_storage
+    <set>
+      <if test="appId != null">
+        app_id = #{appId},
+      </if>
+      <if test="storageSite != null">
+        storage_site = #{storageSite},
+      </if>
+      <if test="owner != null">
+        owner = #{owner},
+      </if>
+      <if test="type != null">
+        type = #{type},
+      </if>
+      <if test="storagePath != null">
+        storage_path = #{storagePath},
+      </if>
+      <if test="fileType != null">
+        file_type = #{fileType},
+      </if>
+      <if test="fileName != null">
+        file_name = #{fileName},
+      </if>
+      <if test="fileSize != null">
+        file_size = #{fileSize},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete},
+      </if>
+      <if test="ctdate != null">
+        ctdate = #{ctdate},
+      </if>
+      <if test="mddate != null">
+        mddate = #{mddate},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
+  <delete id="FileStorage.deleteById" parameterType="Long">
+    delete from file_storage where id = #{value}
+  </delete>
+</mapper>

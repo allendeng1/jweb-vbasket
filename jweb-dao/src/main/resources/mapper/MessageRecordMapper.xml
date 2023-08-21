@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MessageRecord">
+<!--代码生成器会覆盖此文件，自定义SQL请写到query文件中-->
+
+  <resultMap id="MessageRecord.ResultMap" type="com.jweb.dao.entity.MessageRecord">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="app_id" jdbcType="bigint" property="appId" />
+    <result column="code" jdbcType="character varying" property="code" />
+    <result column="sent_channel" jdbcType="character varying" property="sentChannel" />
+    <result column="status" jdbcType="smallint" property="status" />
+    <result column="sender" jdbcType="bigint" property="sender" />
+    <result column="receiver" jdbcType="character varying" property="receiver" />
+    <result column="sent_way" jdbcType="smallint" property="sentWay" />
+    <result column="timing_time" jdbcType="bigint" property="timingTime" />
+    <result column="content" jdbcType="text" property="content" />
+    <result column="sent_time" jdbcType="bigint" property="sentTime" />
+    <result column="sent_result" jdbcType="text" property="sentResult" />
+    <result column="template_code" jdbcType="character varying" property="templateCode" />
+    <result column="reference" jdbcType="character varying" property="reference" />
+    <result column="callback_time" jdbcType="bigint" property="callbackTime" />
+    <result column="callback_result" jdbcType="text" property="callbackResult" />
+    <result column="is_delete" jdbcType="boolean" property="isDelete" />
+    <result column="ctdate" jdbcType="bigint" property="ctdate" />
+    <result column="mddate" jdbcType="bigint" property="mddate" />
+  </resultMap>
+
+  <sql id="MessageRecord.clounms">
+    id,app_id,code,sent_channel,status,sender,receiver,sent_way,timing_time,content,sent_time,sent_result,template_code,reference,callback_time,callback_result,is_delete,ctdate,mddate
+  </sql>
+
+  <sql id="MessageRecord.noidclounms">
+    app_id,code,sent_channel,status,sender,receiver,sent_way,timing_time,content,sent_time,sent_result,template_code,reference,callback_time,callback_result,is_delete,ctdate,mddate
+  </sql>
+
+  <sql id="MessageRecord.where">
+    <if test="id != null">
+      and id = #{id}
+    </if>
+    <if test="appId != null">
+      and app_id = #{appId}
+    </if>
+    <if test="code != null">
+      and code = #{code}
+    </if>
+    <if test="sentChannel != null">
+      and sent_channel = #{sentChannel}
+    </if>
+    <if test="status != null">
+      and status = #{status}
+    </if>
+    <if test="sender != null">
+      and sender = #{sender}
+    </if>
+    <if test="receiver != null">
+      and receiver = #{receiver}
+    </if>
+    <if test="sentWay != null">
+      and sent_way = #{sentWay}
+    </if>
+    <if test="timingTime != null">
+      and timing_time = #{timingTime}
+    </if>
+    <if test="content != null">
+      and content = #{content}
+    </if>
+    <if test="sentTime != null">
+      and sent_time = #{sentTime}
+    </if>
+    <if test="sentResult != null">
+      and sent_result = #{sentResult}
+    </if>
+    <if test="templateCode != null">
+      and template_code = #{templateCode}
+    </if>
+    <if test="reference != null">
+      and reference = #{reference}
+    </if>
+    <if test="callbackTime != null">
+      and callback_time = #{callbackTime}
+    </if>
+    <if test="callbackResult != null">
+      and callback_result = #{callbackResult}
+    </if>
+    <if test="isDelete != null">
+      and is_delete = #{isDelete}
+    </if>
+    <if test="ctdate != null">
+      and ctdate = #{ctdate}
+    </if>
+    <if test="mddate != null">
+      and mddate = #{mddate}
+    </if>
+    <if test="customCondition != null and customCondition != '' ">
+      and ${customCondition}
+    </if>
+  </sql>
+
+  <sql id="MessageRecord.orderAndlimit">
+    <if test="orderCondition != null and orderCondition != '' ">
+      order by ${orderCondition}
+    </if>
+    <if test="limit != null and limit > 0 ">
+      <if test="offset != null and offset >= 0 ">
+        limit #{limit} offset #{offset}
+      </if>
+      <if test="offset == null or offset &lt; 0 ">
+        limit #{limit}
+      </if>
+    </if>
+  </sql>
+
+  <insert id="MessageRecord.insert" parameterType="com.jweb.dao.entity.MessageRecord" useGeneratedKeys="true" keyProperty="id">
+    insert into message_record (<include refid="MessageRecord.noidclounms" />) values (#{appId},#{code},#{sentChannel},#{status},#{sender},#{receiver},#{sentWay},#{timingTime},#{content},#{sentTime},#{sentResult},#{templateCode},#{reference},#{callbackTime},#{callbackResult},#{isDelete},#{ctdate},#{mddate})
+  </insert>
+
+  <select id="MessageRecord.selectIds" resultType="Long" parameterType="com.jweb.dao.entity.MessageRecord">
+    select id from message_record where 1=1
+    <include refid="MessageRecord.where" />
+    <include refid="MessageRecord.orderAndlimit" />
+  </select>
+
+  <select id="MessageRecord.selectList" resultMap="MessageRecord.ResultMap" parameterType="com.jweb.dao.entity.MessageRecord">
+    select <include refid="MessageRecord.clounms" /> from message_record where 1=1
+    <include refid="MessageRecord.where" />
+    <include refid="MessageRecord.orderAndlimit" />
+  </select>
+
+  <select id="MessageRecord.selectById" resultMap="MessageRecord.ResultMap" parameterType="Long">
+    select <include refid="MessageRecord.clounms" /> from message_record where id=#{value}
+  </select>
+
+  <select id="MessageRecord.selectCount" resultType="Integer" parameterType="com.jweb.dao.entity.MessageRecord">
+    select count(*) from message_record where 1=1
+    <include refid="MessageRecord.where" />
+  </select>
+
+  <update id="MessageRecord.updateById" parameterType="com.jweb.dao.entity.MessageRecord">
+    update message_record
+    <set>
+      <if test="appId != null">
+        app_id = #{appId},
+      </if>
+      <if test="code != null">
+        code = #{code},
+      </if>
+      <if test="sentChannel != null">
+        sent_channel = #{sentChannel},
+      </if>
+      <if test="status != null">
+        status = #{status},
+      </if>
+      <if test="sender != null">
+        sender = #{sender},
+      </if>
+      <if test="receiver != null">
+        receiver = #{receiver},
+      </if>
+      <if test="sentWay != null">
+        sent_way = #{sentWay},
+      </if>
+      <if test="timingTime != null">
+        timing_time = #{timingTime},
+      </if>
+      <if test="content != null">
+        content = #{content},
+      </if>
+      <if test="sentTime != null">
+        sent_time = #{sentTime},
+      </if>
+      <if test="sentResult != null">
+        sent_result = #{sentResult},
+      </if>
+      <if test="templateCode != null">
+        template_code = #{templateCode},
+      </if>
+      <if test="reference != null">
+        reference = #{reference},
+      </if>
+      <if test="callbackTime != null">
+        callback_time = #{callbackTime},
+      </if>
+      <if test="callbackResult != null">
+        callback_result = #{callbackResult},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete},
+      </if>
+      <if test="ctdate != null">
+        ctdate = #{ctdate},
+      </if>
+      <if test="mddate != null">
+        mddate = #{mddate},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
+  <delete id="MessageRecord.deleteById" parameterType="Long">
+    delete from message_record where id = #{value}
+  </delete>
+</mapper>

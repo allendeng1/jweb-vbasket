@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MessageTemplate">
+<!--代码生成器会覆盖此文件，自定义SQL请写到query文件中-->
+
+  <resultMap id="MessageTemplate.ResultMap" type="com.jweb.dao.entity.MessageTemplate">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="app_id" jdbcType="bigint" property="appId" />
+    <result column="code" jdbcType="character varying" property="code" />
+    <result column="sent_channel" jdbcType="character varying" property="sentChannel" />
+    <result column="template_code" jdbcType="character varying" property="templateCode" />
+    <result column="content" jdbcType="text" property="content" />
+    <result column="is_delete" jdbcType="boolean" property="isDelete" />
+    <result column="ctdate" jdbcType="bigint" property="ctdate" />
+    <result column="mddate" jdbcType="bigint" property="mddate" />
+  </resultMap>
+
+  <sql id="MessageTemplate.clounms">
+    id,app_id,code,sent_channel,template_code,content,is_delete,ctdate,mddate
+  </sql>
+
+  <sql id="MessageTemplate.noidclounms">
+    app_id,code,sent_channel,template_code,content,is_delete,ctdate,mddate
+  </sql>
+
+  <sql id="MessageTemplate.where">
+    <if test="id != null">
+      and id = #{id}
+    </if>
+    <if test="appId != null">
+      and app_id = #{appId}
+    </if>
+    <if test="code != null">
+      and code = #{code}
+    </if>
+    <if test="sentChannel != null">
+      and sent_channel = #{sentChannel}
+    </if>
+    <if test="templateCode != null">
+      and template_code = #{templateCode}
+    </if>
+    <if test="content != null">
+      and content = #{content}
+    </if>
+    <if test="isDelete != null">
+      and is_delete = #{isDelete}
+    </if>
+    <if test="ctdate != null">
+      and ctdate = #{ctdate}
+    </if>
+    <if test="mddate != null">
+      and mddate = #{mddate}
+    </if>
+    <if test="customCondition != null and customCondition != '' ">
+      and ${customCondition}
+    </if>
+  </sql>
+
+  <sql id="MessageTemplate.orderAndlimit">
+    <if test="orderCondition != null and orderCondition != '' ">
+      order by ${orderCondition}
+    </if>
+    <if test="limit != null and limit > 0 ">
+      <if test="offset != null and offset >= 0 ">
+        limit #{limit} offset #{offset}
+      </if>
+      <if test="offset == null or offset &lt; 0 ">
+        limit #{limit}
+      </if>
+    </if>
+  </sql>
+
+  <insert id="MessageTemplate.insert" parameterType="com.jweb.dao.entity.MessageTemplate" useGeneratedKeys="true" keyProperty="id">
+    insert into message_template (<include refid="MessageTemplate.noidclounms" />) values (#{appId},#{code},#{sentChannel},#{templateCode},#{content},#{isDelete},#{ctdate},#{mddate})
+  </insert>
+
+  <select id="MessageTemplate.selectIds" resultType="Long" parameterType="com.jweb.dao.entity.MessageTemplate">
+    select id from message_template where 1=1
+    <include refid="MessageTemplate.where" />
+    <include refid="MessageTemplate.orderAndlimit" />
+  </select>
+
+  <select id="MessageTemplate.selectList" resultMap="MessageTemplate.ResultMap" parameterType="com.jweb.dao.entity.MessageTemplate">
+    select <include refid="MessageTemplate.clounms" /> from message_template where 1=1
+    <include refid="MessageTemplate.where" />
+    <include refid="MessageTemplate.orderAndlimit" />
+  </select>
+
+  <select id="MessageTemplate.selectById" resultMap="MessageTemplate.ResultMap" parameterType="Long">
+    select <include refid="MessageTemplate.clounms" /> from message_template where id=#{value}
+  </select>
+
+  <select id="MessageTemplate.selectCount" resultType="Integer" parameterType="com.jweb.dao.entity.MessageTemplate">
+    select count(*) from message_template where 1=1
+    <include refid="MessageTemplate.where" />
+  </select>
+
+  <update id="MessageTemplate.updateById" parameterType="com.jweb.dao.entity.MessageTemplate">
+    update message_template
+    <set>
+      <if test="appId != null">
+        app_id = #{appId},
+      </if>
+      <if test="code != null">
+        code = #{code},
+      </if>
+      <if test="sentChannel != null">
+        sent_channel = #{sentChannel},
+      </if>
+      <if test="templateCode != null">
+        template_code = #{templateCode},
+      </if>
+      <if test="content != null">
+        content = #{content},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete},
+      </if>
+      <if test="ctdate != null">
+        ctdate = #{ctdate},
+      </if>
+      <if test="mddate != null">
+        mddate = #{mddate},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
+  <delete id="MessageTemplate.deleteById" parameterType="Long">
+    delete from message_template where id = #{value}
+  </delete>
+</mapper>

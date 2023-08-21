@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ApiLog">
+<!--代码生成器会覆盖此文件，自定义SQL请写到query文件中-->
+
+  <resultMap id="ApiLog.ResultMap" type="com.jweb.dao.entity.ApiLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="app_id" jdbcType="bigint" property="appId" />
+    <result column="server_context_path" jdbcType="character varying" property="serverContextPath" />
+    <result column="ip_address" jdbcType="character varying" property="ipAddress" />
+    <result column="user_id" jdbcType="bigint" property="userId" />
+    <result column="req_url" jdbcType="character varying" property="reqUrl" />
+    <result column="req_method" jdbcType="character varying" property="reqMethod" />
+    <result column="begin_time" jdbcType="bigint" property="beginTime" />
+    <result column="end_time" jdbcType="bigint" property="endTime" />
+    <result column="cost_time" jdbcType="bigint" property="costTime" />
+    <result column="is_attack" jdbcType="boolean" property="isAttack" />
+    <result column="req_param" jdbcType="text" property="reqParam" />
+    <result column="controller_name" jdbcType="character varying" property="controllerName" />
+    <result column="controller_method" jdbcType="character varying" property="controllerMethod" />
+    <result column="result_data" jdbcType="text" property="resultData" />
+    <result column="ctdate" jdbcType="bigint" property="ctdate" />
+    <result column="mddate" jdbcType="bigint" property="mddate" />
+  </resultMap>
+
+  <sql id="ApiLog.clounms">
+    id,app_id,server_context_path,ip_address,user_id,req_url,req_method,begin_time,end_time,cost_time,is_attack,req_param,controller_name,controller_method,result_data,ctdate,mddate
+  </sql>
+
+  <sql id="ApiLog.noidclounms">
+    app_id,server_context_path,ip_address,user_id,req_url,req_method,begin_time,end_time,cost_time,is_attack,req_param,controller_name,controller_method,result_data,ctdate,mddate
+  </sql>
+
+  <sql id="ApiLog.where">
+    <if test="id != null">
+      and id = #{id}
+    </if>
+    <if test="appId != null">
+      and app_id = #{appId}
+    </if>
+    <if test="serverContextPath != null">
+      and server_context_path = #{serverContextPath}
+    </if>
+    <if test="ipAddress != null">
+      and ip_address = #{ipAddress}
+    </if>
+    <if test="userId != null">
+      and user_id = #{userId}
+    </if>
+    <if test="reqUrl != null">
+      and req_url = #{reqUrl}
+    </if>
+    <if test="reqMethod != null">
+      and req_method = #{reqMethod}
+    </if>
+    <if test="beginTime != null">
+      and begin_time = #{beginTime}
+    </if>
+    <if test="endTime != null">
+      and end_time = #{endTime}
+    </if>
+    <if test="costTime != null">
+      and cost_time = #{costTime}
+    </if>
+    <if test="isAttack != null">
+      and is_attack = #{isAttack}
+    </if>
+    <if test="reqParam != null">
+      and req_param = #{reqParam}
+    </if>
+    <if test="controllerName != null">
+      and controller_name = #{controllerName}
+    </if>
+    <if test="controllerMethod != null">
+      and controller_method = #{controllerMethod}
+    </if>
+    <if test="resultData != null">
+      and result_data = #{resultData}
+    </if>
+    <if test="ctdate != null">
+      and ctdate = #{ctdate}
+    </if>
+    <if test="mddate != null">
+      and mddate = #{mddate}
+    </if>
+    <if test="customCondition != null and customCondition != '' ">
+      and ${customCondition}
+    </if>
+  </sql>
+
+  <sql id="ApiLog.orderAndlimit">
+    <if test="orderCondition != null and orderCondition != '' ">
+      order by ${orderCondition}
+    </if>
+    <if test="limit != null and limit > 0 ">
+      <if test="offset != null and offset >= 0 ">
+        limit #{limit} offset #{offset}
+      </if>
+      <if test="offset == null or offset &lt; 0 ">
+        limit #{limit}
+      </if>
+    </if>
+  </sql>
+
+  <insert id="ApiLog.insert" parameterType="com.jweb.dao.entity.ApiLog" useGeneratedKeys="true" keyProperty="id">
+    insert into api_log (<include refid="ApiLog.noidclounms" />) values (#{appId},#{serverContextPath},#{ipAddress},#{userId},#{reqUrl},#{reqMethod},#{beginTime},#{endTime},#{costTime},#{isAttack},#{reqParam},#{controllerName},#{controllerMethod},#{resultData},#{ctdate},#{mddate})
+  </insert>
+
+  <select id="ApiLog.selectIds" resultType="Long" parameterType="com.jweb.dao.entity.ApiLog">
+    select id from api_log where 1=1
+    <include refid="ApiLog.where" />
+    <include refid="ApiLog.orderAndlimit" />
+  </select>
+
+  <select id="ApiLog.selectList" resultMap="ApiLog.ResultMap" parameterType="com.jweb.dao.entity.ApiLog">
+    select <include refid="ApiLog.clounms" /> from api_log where 1=1
+    <include refid="ApiLog.where" />
+    <include refid="ApiLog.orderAndlimit" />
+  </select>
+
+  <select id="ApiLog.selectById" resultMap="ApiLog.ResultMap" parameterType="Long">
+    select <include refid="ApiLog.clounms" /> from api_log where id=#{value}
+  </select>
+
+  <select id="ApiLog.selectCount" resultType="Integer" parameterType="com.jweb.dao.entity.ApiLog">
+    select count(*) from api_log where 1=1
+    <include refid="ApiLog.where" />
+  </select>
+
+  <update id="ApiLog.updateById" parameterType="com.jweb.dao.entity.ApiLog">
+    update api_log
+    <set>
+      <if test="appId != null">
+        app_id = #{appId},
+      </if>
+      <if test="serverContextPath != null">
+        server_context_path = #{serverContextPath},
+      </if>
+      <if test="ipAddress != null">
+        ip_address = #{ipAddress},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId},
+      </if>
+      <if test="reqUrl != null">
+        req_url = #{reqUrl},
+      </if>
+      <if test="reqMethod != null">
+        req_method = #{reqMethod},
+      </if>
+      <if test="beginTime != null">
+        begin_time = #{beginTime},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime},
+      </if>
+      <if test="costTime != null">
+        cost_time = #{costTime},
+      </if>
+      <if test="isAttack != null">
+        is_attack = #{isAttack},
+      </if>
+      <if test="reqParam != null">
+        req_param = #{reqParam},
+      </if>
+      <if test="controllerName != null">
+        controller_name = #{controllerName},
+      </if>
+      <if test="controllerMethod != null">
+        controller_method = #{controllerMethod},
+      </if>
+      <if test="resultData != null">
+        result_data = #{resultData},
+      </if>
+      <if test="ctdate != null">
+        ctdate = #{ctdate},
+      </if>
+      <if test="mddate != null">
+        mddate = #{mddate},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
+  <delete id="ApiLog.deleteById" parameterType="Long">
+    delete from api_log where id = #{value}
+  </delete>
+</mapper>

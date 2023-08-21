@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SysConfig">
+<!--代码生成器会覆盖此文件，自定义SQL请写到query文件中-->
+
+  <resultMap id="SysConfig.ResultMap" type="com.jweb.dao.entity.SysConfig">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="app_id" jdbcType="bigint" property="appId" />
+    <result column="status" jdbcType="smallint" property="status" />
+    <result column="prop_key" jdbcType="character varying" property="propKey" />
+    <result column="prop_value" jdbcType="text" property="propValue" />
+    <result column="remark" jdbcType="character varying" property="remark" />
+    <result column="ctdate" jdbcType="bigint" property="ctdate" />
+    <result column="mddate" jdbcType="bigint" property="mddate" />
+  </resultMap>
+
+  <sql id="SysConfig.clounms">
+    id,app_id,status,prop_key,prop_value,remark,ctdate,mddate
+  </sql>
+
+  <sql id="SysConfig.noidclounms">
+    app_id,status,prop_key,prop_value,remark,ctdate,mddate
+  </sql>
+
+  <sql id="SysConfig.where">
+    <if test="id != null">
+      and id = #{id}
+    </if>
+    <if test="appId != null">
+      and app_id = #{appId}
+    </if>
+    <if test="status != null">
+      and status = #{status}
+    </if>
+    <if test="propKey != null">
+      and prop_key = #{propKey}
+    </if>
+    <if test="propValue != null">
+      and prop_value = #{propValue}
+    </if>
+    <if test="remark != null">
+      and remark = #{remark}
+    </if>
+    <if test="ctdate != null">
+      and ctdate = #{ctdate}
+    </if>
+    <if test="mddate != null">
+      and mddate = #{mddate}
+    </if>
+    <if test="customCondition != null and customCondition != '' ">
+      and ${customCondition}
+    </if>
+  </sql>
+
+  <sql id="SysConfig.orderAndlimit">
+    <if test="orderCondition != null and orderCondition != '' ">
+      order by ${orderCondition}
+    </if>
+    <if test="limit != null and limit > 0 ">
+      <if test="offset != null and offset >= 0 ">
+        limit #{limit} offset #{offset}
+      </if>
+      <if test="offset == null or offset &lt; 0 ">
+        limit #{limit}
+      </if>
+    </if>
+  </sql>
+
+  <insert id="SysConfig.insert" parameterType="com.jweb.dao.entity.SysConfig" useGeneratedKeys="true" keyProperty="id">
+    insert into sys_config (<include refid="SysConfig.noidclounms" />) values (#{appId},#{status},#{propKey},#{propValue},#{remark},#{ctdate},#{mddate})
+  </insert>
+
+  <select id="SysConfig.selectIds" resultType="Long" parameterType="com.jweb.dao.entity.SysConfig">
+    select id from sys_config where 1=1
+    <include refid="SysConfig.where" />
+    <include refid="SysConfig.orderAndlimit" />
+  </select>
+
+  <select id="SysConfig.selectList" resultMap="SysConfig.ResultMap" parameterType="com.jweb.dao.entity.SysConfig">
+    select <include refid="SysConfig.clounms" /> from sys_config where 1=1
+    <include refid="SysConfig.where" />
+    <include refid="SysConfig.orderAndlimit" />
+  </select>
+
+  <select id="SysConfig.selectById" resultMap="SysConfig.ResultMap" parameterType="Long">
+    select <include refid="SysConfig.clounms" /> from sys_config where id=#{value}
+  </select>
+
+  <select id="SysConfig.selectCount" resultType="Integer" parameterType="com.jweb.dao.entity.SysConfig">
+    select count(*) from sys_config where 1=1
+    <include refid="SysConfig.where" />
+  </select>
+
+  <update id="SysConfig.updateById" parameterType="com.jweb.dao.entity.SysConfig">
+    update sys_config
+    <set>
+      <if test="appId != null">
+        app_id = #{appId},
+      </if>
+      <if test="status != null">
+        status = #{status},
+      </if>
+      <if test="propKey != null">
+        prop_key = #{propKey},
+      </if>
+      <if test="propValue != null">
+        prop_value = #{propValue},
+      </if>
+      <if test="remark != null">
+        remark = #{remark},
+      </if>
+      <if test="ctdate != null">
+        ctdate = #{ctdate},
+      </if>
+      <if test="mddate != null">
+        mddate = #{mddate},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
+  <delete id="SysConfig.deleteById" parameterType="Long">
+    delete from sys_config where id = #{value}
+  </delete>
+</mapper>

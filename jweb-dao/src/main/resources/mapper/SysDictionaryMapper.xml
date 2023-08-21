@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SysDictionary">
+<!--代码生成器会覆盖此文件，自定义SQL请写到query文件中-->
+
+  <resultMap id="SysDictionary.ResultMap" type="com.jweb.dao.entity.SysDictionary">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="type" jdbcType="character varying" property="type" />
+    <result column="region" jdbcType="character varying" property="region" />
+    <result column="name" jdbcType="character varying" property="name" />
+    <result column="status" jdbcType="smallint" property="status" />
+    <result column="sort_col" jdbcType="smallint" property="sortCol" />
+    <result column="ctdate" jdbcType="bigint" property="ctdate" />
+    <result column="mddate" jdbcType="bigint" property="mddate" />
+  </resultMap>
+
+  <sql id="SysDictionary.clounms">
+    id,type,region,name,status,sort_col,ctdate,mddate
+  </sql>
+
+  <sql id="SysDictionary.noidclounms">
+    type,region,name,status,sort_col,ctdate,mddate
+  </sql>
+
+  <sql id="SysDictionary.where">
+    <if test="id != null">
+      and id = #{id}
+    </if>
+    <if test="type != null">
+      and type = #{type}
+    </if>
+    <if test="region != null">
+      and region = #{region}
+    </if>
+    <if test="name != null">
+      and name = #{name}
+    </if>
+    <if test="status != null">
+      and status = #{status}
+    </if>
+    <if test="sortCol != null">
+      and sort_col = #{sortCol}
+    </if>
+    <if test="ctdate != null">
+      and ctdate = #{ctdate}
+    </if>
+    <if test="mddate != null">
+      and mddate = #{mddate}
+    </if>
+    <if test="customCondition != null and customCondition != '' ">
+      and ${customCondition}
+    </if>
+  </sql>
+
+  <sql id="SysDictionary.orderAndlimit">
+    <if test="orderCondition != null and orderCondition != '' ">
+      order by ${orderCondition}
+    </if>
+    <if test="limit != null and limit > 0 ">
+      <if test="offset != null and offset >= 0 ">
+        limit #{limit} offset #{offset}
+      </if>
+      <if test="offset == null or offset &lt; 0 ">
+        limit #{limit}
+      </if>
+    </if>
+  </sql>
+
+  <insert id="SysDictionary.insert" parameterType="com.jweb.dao.entity.SysDictionary" useGeneratedKeys="true" keyProperty="id">
+    insert into sys_dictionary (<include refid="SysDictionary.noidclounms" />) values (#{type},#{region},#{name},#{status},#{sortCol},#{ctdate},#{mddate})
+  </insert>
+
+  <select id="SysDictionary.selectIds" resultType="Long" parameterType="com.jweb.dao.entity.SysDictionary">
+    select id from sys_dictionary where 1=1
+    <include refid="SysDictionary.where" />
+    <include refid="SysDictionary.orderAndlimit" />
+  </select>
+
+  <select id="SysDictionary.selectList" resultMap="SysDictionary.ResultMap" parameterType="com.jweb.dao.entity.SysDictionary">
+    select <include refid="SysDictionary.clounms" /> from sys_dictionary where 1=1
+    <include refid="SysDictionary.where" />
+    <include refid="SysDictionary.orderAndlimit" />
+  </select>
+
+  <select id="SysDictionary.selectById" resultMap="SysDictionary.ResultMap" parameterType="Long">
+    select <include refid="SysDictionary.clounms" /> from sys_dictionary where id=#{value}
+  </select>
+
+  <select id="SysDictionary.selectCount" resultType="Integer" parameterType="com.jweb.dao.entity.SysDictionary">
+    select count(*) from sys_dictionary where 1=1
+    <include refid="SysDictionary.where" />
+  </select>
+
+  <update id="SysDictionary.updateById" parameterType="com.jweb.dao.entity.SysDictionary">
+    update sys_dictionary
+    <set>
+      <if test="type != null">
+        type = #{type},
+      </if>
+      <if test="region != null">
+        region = #{region},
+      </if>
+      <if test="name != null">
+        name = #{name},
+      </if>
+      <if test="status != null">
+        status = #{status},
+      </if>
+      <if test="sortCol != null">
+        sort_col = #{sortCol},
+      </if>
+      <if test="ctdate != null">
+        ctdate = #{ctdate},
+      </if>
+      <if test="mddate != null">
+        mddate = #{mddate},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
+  <delete id="SysDictionary.deleteById" parameterType="Long">
+    delete from sys_dictionary where id = #{value}
+  </delete>
+</mapper>

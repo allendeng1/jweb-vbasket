@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//src/main/java=UTF-8
+encoding//src/main/resources/common-dev.properties=UTF-8
+encoding//src/main/resources/common-prod.properties=UTF-8
+encoding//src/main/resources/common-test.properties=UTF-8
+encoding//src/main/resources/i18n/errormsg.properties=UTF-8
+encoding//src/main/resources/i18n/errormsg_chinese.properties=UTF-8
+encoding//src/main/resources/i18n/errormsg_english.properties=UTF-8
+encoding//src/main/resources/i18n/errormsg_spanish.properties=UTF-8
+encoding//src/test/java=UTF-8
+encoding/<project>=UTF-8
