@@ -11,6 +11,9 @@
     <module>jweb-dao</module>
     <module>jweb-service</module>
     <module>jweb-adminweb</module>
+    <module>jweb-schedule</module>
+    <module>jweb-message</module>
+    <module>jweb-mq</module>
   </modules>
   
   <parent>

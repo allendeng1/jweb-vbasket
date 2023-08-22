@@ -1,0 +1,31 @@
+server:
+  port: 11001
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: jweb-admin
+  flyway:
+    enabled: false
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+#  elasticsearch:
+#    rest:
+#      uris: http://localhost:9200
+  aop:
+    auto: true
+  datasource:
+    name: saas_credit
+    type: com.zaxxer.hikari.HikariDataSource
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/saas_credit
+    username: postgres
+    password: 123456
+    
+#文件存储服务：LOCAL-本地存储， ALIYUNOSS-阿里云OSS，MYSITE-自建存储服务，FTP-ftp存储服务
+file:
+  storage:
+    site: LOCAL

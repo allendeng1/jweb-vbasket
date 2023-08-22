@@ -14,7 +14,7 @@ import com.jweb.service.MessageRecordService;
  *
  * @author 邓超
  *
- * 2023/08/21 17:20
+ * 2023/08/22 14:43
 */
 @RestController
 public class MessageRecordController extends BaseController implements MessageRecordApiDoc {
@@ -24,7 +24,6 @@ public class MessageRecordController extends BaseController implements MessageRe
 
   @Override
   public ApiResult addMessageRecord(
-    Long appId,
     String code,
     String sentChannel,
     Integer status,
@@ -45,7 +44,6 @@ public class MessageRecordController extends BaseController implements MessageRe
     ApiResult result = new ApiResult();
     try {
       MessageRecord entity = new MessageRecord();
-      entity.setAppId(appId);
       entity.setCode(code);
       entity.setSentChannel(sentChannel);
       entity.setStatus(status);
@@ -73,7 +71,6 @@ public class MessageRecordController extends BaseController implements MessageRe
   @Override
   public ApiResult editMessageRecord(
     Long id,
-    Long appId,
     String code,
     String sentChannel,
     Integer status,
@@ -95,7 +92,6 @@ public class MessageRecordController extends BaseController implements MessageRe
     try {
       MessageRecord entity = new MessageRecord();
       entity.setId(id);
-      entity.setAppId(appId);
       entity.setCode(code);
       entity.setSentChannel(sentChannel);
       entity.setStatus(status);
@@ -122,7 +118,6 @@ public class MessageRecordController extends BaseController implements MessageRe
 
   @Override
   public MessageRecordResult getMessageRecordList(
-    Long appId,
     String code,
     String sentChannel,
     Integer status,
@@ -145,7 +140,6 @@ public class MessageRecordController extends BaseController implements MessageRe
     MessageRecordResult result = new MessageRecordResult();
     try {
       MessageRecord entity = new MessageRecord();
-      entity.setAppId(appId);
       entity.setCode(code);
       entity.setSentChannel(sentChannel);
       entity.setStatus(status);

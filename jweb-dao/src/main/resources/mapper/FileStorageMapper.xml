@@ -5,33 +5,29 @@
 
   <resultMap id="FileStorage.ResultMap" type="com.jweb.dao.entity.FileStorage">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="app_id" jdbcType="bigint" property="appId" />
-    <result column="storage_site" jdbcType="character varying" property="storageSite" />
-    <result column="owner" jdbcType="character varying" property="owner" />
-    <result column="type" jdbcType="integer" property="type" />
-    <result column="storage_path" jdbcType="text" property="storagePath" />
-    <result column="file_type" jdbcType="character varying" property="fileType" />
-    <result column="file_name" jdbcType="character varying" property="fileName" />
-    <result column="file_size" jdbcType="bigint" property="fileSize" />
-    <result column="is_delete" jdbcType="boolean" property="isDelete" />
-    <result column="ctdate" jdbcType="bigint" property="ctdate" />
-    <result column="mddate" jdbcType="bigint" property="mddate" />
+    <result column="storage_site" jdbcType="VARCHAR" property="storageSite" />
+    <result column="owner" jdbcType="VARCHAR" property="owner" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="storage_path" jdbcType="VARCHAR" property="storagePath" />
+    <result column="file_type" jdbcType="VARCHAR" property="fileType" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="file_size" jdbcType="BIGINT" property="fileSize" />
+    <result column="is_delete" jdbcType="BOOLEAN" property="isDelete" />
+    <result column="ctdate" jdbcType="BIGINT" property="ctdate" />
+    <result column="mddate" jdbcType="BIGINT" property="mddate" />
   </resultMap>
 
   <sql id="FileStorage.clounms">
-    id,app_id,storage_site,owner,type,storage_path,file_type,file_name,file_size,is_delete,ctdate,mddate
+    id,storage_site,owner,type,storage_path,file_type,file_name,file_size,is_delete,ctdate,mddate
   </sql>
 
   <sql id="FileStorage.noidclounms">
-    app_id,storage_site,owner,type,storage_path,file_type,file_name,file_size,is_delete,ctdate,mddate
+    storage_site,owner,type,storage_path,file_type,file_name,file_size,is_delete,ctdate,mddate
   </sql>
 
   <sql id="FileStorage.where">
     <if test="id != null">
       and id = #{id}
-    </if>
-    <if test="appId != null">
-      and app_id = #{appId}
     </if>
     <if test="storageSite != null">
       and storage_site = #{storageSite}
@@ -83,7 +79,7 @@
   </sql>
 
   <insert id="FileStorage.insert" parameterType="com.jweb.dao.entity.FileStorage" useGeneratedKeys="true" keyProperty="id">
-    insert into file_storage (<include refid="FileStorage.noidclounms" />) values (#{appId},#{storageSite},#{owner},#{type},#{storagePath},#{fileType},#{fileName},#{fileSize},#{isDelete},#{ctdate},#{mddate})
+    insert into file_storage (<include refid="FileStorage.noidclounms" />) values (#{storageSite},#{owner},#{type},#{storagePath},#{fileType},#{fileName},#{fileSize},#{isDelete},#{ctdate},#{mddate})
   </insert>
 
   <select id="FileStorage.selectIds" resultType="Long" parameterType="com.jweb.dao.entity.FileStorage">
@@ -110,9 +106,6 @@
   <update id="FileStorage.updateById" parameterType="com.jweb.dao.entity.FileStorage">
     update file_storage
     <set>
-      <if test="appId != null">
-        app_id = #{appId},
-      </if>
       <if test="storageSite != null">
         storage_site = #{storageSite},
       </if>

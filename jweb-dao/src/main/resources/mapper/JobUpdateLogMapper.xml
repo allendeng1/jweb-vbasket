@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="JobUpdateLog">
+<!--代码生成器会覆盖此文件，自定义SQL请写到query文件中-->
+
+  <resultMap id="JobUpdateLog.ResultMap" type="com.jweb.dao.entity.JobUpdateLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="task_id" jdbcType="BIGINT" property="taskId" />
+    <result column="task_no" jdbcType="VARCHAR" property="taskNo" />
+    <result column="task_name" jdbcType="VARCHAR" property="taskName" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="admin_user_id" jdbcType="BIGINT" property="adminUserId" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="ctdate" jdbcType="BIGINT" property="ctdate" />
+    <result column="mddate" jdbcType="BIGINT" property="mddate" />
+  </resultMap>
+
+  <sql id="JobUpdateLog.clounms">
+    id,task_id,task_no,task_name,type,admin_user_id,remark,ctdate,mddate
+  </sql>
+
+  <sql id="JobUpdateLog.noidclounms">
+    task_id,task_no,task_name,type,admin_user_id,remark,ctdate,mddate
+  </sql>
+
+  <sql id="JobUpdateLog.where">
+    <if test="id != null">
+      and id = #{id}
+    </if>
+    <if test="taskId != null">
+      and task_id = #{taskId}
+    </if>
+    <if test="taskNo != null">
+      and task_no = #{taskNo}
+    </if>
+    <if test="taskName != null">
+      and task_name = #{taskName}
+    </if>
+    <if test="type != null">
+      and type = #{type}
+    </if>
+    <if test="adminUserId != null">
+      and admin_user_id = #{adminUserId}
+    </if>
+    <if test="remark != null">
+      and remark = #{remark}
+    </if>
+    <if test="ctdate != null">
+      and ctdate = #{ctdate}
+    </if>
+    <if test="mddate != null">
+      and mddate = #{mddate}
+    </if>
+    <if test="customCondition != null and customCondition != '' ">
+      and ${customCondition}
+    </if>
+  </sql>
+
+  <sql id="JobUpdateLog.orderAndlimit">
+    <if test="orderCondition != null and orderCondition != '' ">
+      order by ${orderCondition}
+    </if>
+    <if test="limit != null and limit > 0 ">
+      <if test="offset != null and offset >= 0 ">
+        limit #{limit} offset #{offset}
+      </if>
+      <if test="offset == null or offset &lt; 0 ">
+        limit #{limit}
+      </if>
+    </if>
+  </sql>
+
+  <insert id="JobUpdateLog.insert" parameterType="com.jweb.dao.entity.JobUpdateLog" useGeneratedKeys="true" keyProperty="id">
+    insert into job_update_log (<include refid="JobUpdateLog.noidclounms" />) values (#{taskId},#{taskNo},#{taskName},#{type},#{adminUserId},#{remark},#{ctdate},#{mddate})
+  </insert>
+
+  <select id="JobUpdateLog.selectIds" resultType="Long" parameterType="com.jweb.dao.entity.JobUpdateLog">
+    select id from job_update_log where 1=1
+    <include refid="JobUpdateLog.where" />
+    <include refid="JobUpdateLog.orderAndlimit" />
+  </select>
+
+  <select id="JobUpdateLog.selectList" resultMap="JobUpdateLog.ResultMap" parameterType="com.jweb.dao.entity.JobUpdateLog">
+    select <include refid="JobUpdateLog.clounms" /> from job_update_log where 1=1
+    <include refid="JobUpdateLog.where" />
+    <include refid="JobUpdateLog.orderAndlimit" />
+  </select>
+
+  <select id="JobUpdateLog.selectById" resultMap="JobUpdateLog.ResultMap" parameterType="Long">
+    select <include refid="JobUpdateLog.clounms" /> from job_update_log where id=#{value}
+  </select>
+
+  <select id="JobUpdateLog.selectCount" resultType="Integer" parameterType="com.jweb.dao.entity.JobUpdateLog">
+    select count(*) from job_update_log where 1=1
+    <include refid="JobUpdateLog.where" />
+  </select>
+
+  <update id="JobUpdateLog.updateById" parameterType="com.jweb.dao.entity.JobUpdateLog">
+    update job_update_log
+    <set>
+      <if test="taskId != null">
+        task_id = #{taskId},
+      </if>
+      <if test="taskNo != null">
+        task_no = #{taskNo},
+      </if>
+      <if test="taskName != null">
+        task_name = #{taskName},
+      </if>
+      <if test="type != null">
+        type = #{type},
+      </if>
+      <if test="adminUserId != null">
+        admin_user_id = #{adminUserId},
+      </if>
+      <if test="remark != null">
+        remark = #{remark},
+      </if>
+      <if test="ctdate != null">
+        ctdate = #{ctdate},
+      </if>
+      <if test="mddate != null">
+        mddate = #{mddate},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
+  <delete id="JobUpdateLog.deleteById" parameterType="Long">
+    delete from job_update_log where id = #{value}
+  </delete>
+</mapper>

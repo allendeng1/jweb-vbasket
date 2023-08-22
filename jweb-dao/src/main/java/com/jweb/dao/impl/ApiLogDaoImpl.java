@@ -9,7 +9,7 @@ import com.jweb.dao.entity.ApiLog;
  *
  * @author 邓超
  *
- * 2023/08/19 17:37
+ * 2023/08/22 11:27
 */
 @Service
 public class ApiLogDaoImpl extends BaseDaoSupport<ApiLog> implements ApiLogDao {

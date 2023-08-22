@@ -14,7 +14,7 @@ import com.jweb.service.FileStorageService;
  *
  * @author 邓超
  *
- * 2023/08/21 17:20
+ * 2023/08/22 14:43
 */
 @RestController
 public class FileStorageController extends BaseController implements FileStorageApiDoc {
@@ -24,7 +24,6 @@ public class FileStorageController extends BaseController implements FileStorage
 
   @Override
   public ApiResult addFileStorage(
-    Long appId,
     String storageSite,
     String owner,
     Integer type,
@@ -38,7 +37,6 @@ public class FileStorageController extends BaseController implements FileStorage
     ApiResult result = new ApiResult();
     try {
       FileStorage entity = new FileStorage();
-      entity.setAppId(appId);
       entity.setStorageSite(storageSite);
       entity.setOwner(owner);
       entity.setType(type);
@@ -59,7 +57,6 @@ public class FileStorageController extends BaseController implements FileStorage
   @Override
   public ApiResult editFileStorage(
     Long id,
-    Long appId,
     String storageSite,
     String owner,
     Integer type,
@@ -74,7 +71,6 @@ public class FileStorageController extends BaseController implements FileStorage
     try {
       FileStorage entity = new FileStorage();
       entity.setId(id);
-      entity.setAppId(appId);
       entity.setStorageSite(storageSite);
       entity.setOwner(owner);
       entity.setType(type);
@@ -94,7 +90,6 @@ public class FileStorageController extends BaseController implements FileStorage
 
   @Override
   public FileStorageResult getFileStorageList(
-    Long appId,
     String storageSite,
     String owner,
     Integer type,
@@ -110,7 +105,6 @@ public class FileStorageController extends BaseController implements FileStorage
     FileStorageResult result = new FileStorageResult();
     try {
       FileStorage entity = new FileStorage();
-      entity.setAppId(appId);
       entity.setStorageSite(storageSite);
       entity.setOwner(owner);
       entity.setType(type);

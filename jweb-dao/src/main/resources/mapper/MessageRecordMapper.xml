@@ -5,40 +5,36 @@
 
   <resultMap id="MessageRecord.ResultMap" type="com.jweb.dao.entity.MessageRecord">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="app_id" jdbcType="bigint" property="appId" />
-    <result column="code" jdbcType="character varying" property="code" />
-    <result column="sent_channel" jdbcType="character varying" property="sentChannel" />
-    <result column="status" jdbcType="smallint" property="status" />
-    <result column="sender" jdbcType="bigint" property="sender" />
-    <result column="receiver" jdbcType="character varying" property="receiver" />
-    <result column="sent_way" jdbcType="smallint" property="sentWay" />
-    <result column="timing_time" jdbcType="bigint" property="timingTime" />
-    <result column="content" jdbcType="text" property="content" />
-    <result column="sent_time" jdbcType="bigint" property="sentTime" />
-    <result column="sent_result" jdbcType="text" property="sentResult" />
-    <result column="template_code" jdbcType="character varying" property="templateCode" />
-    <result column="reference" jdbcType="character varying" property="reference" />
-    <result column="callback_time" jdbcType="bigint" property="callbackTime" />
-    <result column="callback_result" jdbcType="text" property="callbackResult" />
-    <result column="is_delete" jdbcType="boolean" property="isDelete" />
-    <result column="ctdate" jdbcType="bigint" property="ctdate" />
-    <result column="mddate" jdbcType="bigint" property="mddate" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="sent_channel" jdbcType="VARCHAR" property="sentChannel" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="sender" jdbcType="BIGINT" property="sender" />
+    <result column="receiver" jdbcType="VARCHAR" property="receiver" />
+    <result column="sent_way" jdbcType="INTEGER" property="sentWay" />
+    <result column="timing_time" jdbcType="BIGINT" property="timingTime" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="sent_time" jdbcType="BIGINT" property="sentTime" />
+    <result column="sent_result" jdbcType="VARCHAR" property="sentResult" />
+    <result column="template_code" jdbcType="VARCHAR" property="templateCode" />
+    <result column="reference" jdbcType="VARCHAR" property="reference" />
+    <result column="callback_time" jdbcType="BIGINT" property="callbackTime" />
+    <result column="callback_result" jdbcType="VARCHAR" property="callbackResult" />
+    <result column="is_delete" jdbcType="BOOLEAN" property="isDelete" />
+    <result column="ctdate" jdbcType="BIGINT" property="ctdate" />
+    <result column="mddate" jdbcType="BIGINT" property="mddate" />
   </resultMap>
 
   <sql id="MessageRecord.clounms">
-    id,app_id,code,sent_channel,status,sender,receiver,sent_way,timing_time,content,sent_time,sent_result,template_code,reference,callback_time,callback_result,is_delete,ctdate,mddate
+    id,code,sent_channel,status,sender,receiver,sent_way,timing_time,content,sent_time,sent_result,template_code,reference,callback_time,callback_result,is_delete,ctdate,mddate
   </sql>
 
   <sql id="MessageRecord.noidclounms">
-    app_id,code,sent_channel,status,sender,receiver,sent_way,timing_time,content,sent_time,sent_result,template_code,reference,callback_time,callback_result,is_delete,ctdate,mddate
+    code,sent_channel,status,sender,receiver,sent_way,timing_time,content,sent_time,sent_result,template_code,reference,callback_time,callback_result,is_delete,ctdate,mddate
   </sql>
 
   <sql id="MessageRecord.where">
     <if test="id != null">
       and id = #{id}
-    </if>
-    <if test="appId != null">
-      and app_id = #{appId}
     </if>
     <if test="code != null">
       and code = #{code}
@@ -111,7 +107,7 @@
   </sql>
 
   <insert id="MessageRecord.insert" parameterType="com.jweb.dao.entity.MessageRecord" useGeneratedKeys="true" keyProperty="id">
-    insert into message_record (<include refid="MessageRecord.noidclounms" />) values (#{appId},#{code},#{sentChannel},#{status},#{sender},#{receiver},#{sentWay},#{timingTime},#{content},#{sentTime},#{sentResult},#{templateCode},#{reference},#{callbackTime},#{callbackResult},#{isDelete},#{ctdate},#{mddate})
+    insert into message_record (<include refid="MessageRecord.noidclounms" />) values (#{code},#{sentChannel},#{status},#{sender},#{receiver},#{sentWay},#{timingTime},#{content},#{sentTime},#{sentResult},#{templateCode},#{reference},#{callbackTime},#{callbackResult},#{isDelete},#{ctdate},#{mddate})
   </insert>
 
   <select id="MessageRecord.selectIds" resultType="Long" parameterType="com.jweb.dao.entity.MessageRecord">
@@ -138,9 +134,6 @@
   <update id="MessageRecord.updateById" parameterType="com.jweb.dao.entity.MessageRecord">
     update message_record
     <set>
-      <if test="appId != null">
-        app_id = #{appId},
-      </if>
       <if test="code != null">
         code = #{code},
       </if>

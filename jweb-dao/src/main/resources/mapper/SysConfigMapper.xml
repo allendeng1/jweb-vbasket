@@ -5,29 +5,25 @@
 
   <resultMap id="SysConfig.ResultMap" type="com.jweb.dao.entity.SysConfig">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="app_id" jdbcType="bigint" property="appId" />
-    <result column="status" jdbcType="smallint" property="status" />
-    <result column="prop_key" jdbcType="character varying" property="propKey" />
-    <result column="prop_value" jdbcType="text" property="propValue" />
-    <result column="remark" jdbcType="character varying" property="remark" />
-    <result column="ctdate" jdbcType="bigint" property="ctdate" />
-    <result column="mddate" jdbcType="bigint" property="mddate" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="prop_key" jdbcType="VARCHAR" property="propKey" />
+    <result column="prop_value" jdbcType="VARCHAR" property="propValue" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="ctdate" jdbcType="BIGINT" property="ctdate" />
+    <result column="mddate" jdbcType="BIGINT" property="mddate" />
   </resultMap>
 
   <sql id="SysConfig.clounms">
-    id,app_id,status,prop_key,prop_value,remark,ctdate,mddate
+    id,status,prop_key,prop_value,remark,ctdate,mddate
   </sql>
 
   <sql id="SysConfig.noidclounms">
-    app_id,status,prop_key,prop_value,remark,ctdate,mddate
+    status,prop_key,prop_value,remark,ctdate,mddate
   </sql>
 
   <sql id="SysConfig.where">
     <if test="id != null">
       and id = #{id}
-    </if>
-    <if test="appId != null">
-      and app_id = #{appId}
     </if>
     <if test="status != null">
       and status = #{status}
@@ -67,7 +63,7 @@
   </sql>
 
   <insert id="SysConfig.insert" parameterType="com.jweb.dao.entity.SysConfig" useGeneratedKeys="true" keyProperty="id">
-    insert into sys_config (<include refid="SysConfig.noidclounms" />) values (#{appId},#{status},#{propKey},#{propValue},#{remark},#{ctdate},#{mddate})
+    insert into sys_config (<include refid="SysConfig.noidclounms" />) values (#{status},#{propKey},#{propValue},#{remark},#{ctdate},#{mddate})
   </insert>
 
   <select id="SysConfig.selectIds" resultType="Long" parameterType="com.jweb.dao.entity.SysConfig">
@@ -94,9 +90,6 @@
   <update id="SysConfig.updateById" parameterType="com.jweb.dao.entity.SysConfig">
     update sys_config
     <set>
-      <if test="appId != null">
-        app_id = #{appId},
-      </if>
       <if test="status != null">
         status = #{status},
       </if>

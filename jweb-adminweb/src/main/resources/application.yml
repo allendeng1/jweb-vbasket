@@ -1,0 +1,46 @@
+spring:
+  profiles:
+    #环境变量：dev-开发，test-测试，prod-生产
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+  messages:
+    basename: i18n/errormsg,i18n/message
+
+locale: 
+  country: China #程序服务国家，用于国际化和时间时区，值对应com.loan.common.util.LocaleUtil的enum Country
+  
+websocket:
+  enable: true
+  
+#searchengine:
+#  provider: ES #搜索引擎服务提供者，ES、SOLR
+
+mybatis:
+  mapper-locations: classpath:/mapper/**/*.xml
+  type-aliases-package: com.jweb.dao.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    
+
+#免登录允许访问的url：1-完全匹配url，2-包含url，3-以url开始       
+auth: 
+  ignore: 
+    urls: 
+      2-/common/getCaptcha,
+      2-/common/checkCaptcha,
+      2-/common/upload,
+      2-/getToken,
+      2-/swagger-ui,
+      2-/swagger-resources,
+      2-/springfox-swagger-ui,
+      2-/api-doc,
+      2-/account/addUser,
+      2-/account/getUser,
+      2-/department,
+      2-/role,
+      2-/message,
+      2-/socket
+      

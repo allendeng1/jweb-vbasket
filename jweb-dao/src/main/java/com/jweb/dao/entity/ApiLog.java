@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
  *
  * @author 邓超
  *
- * 2023/08/20 13:25
+ * 2023/08/22 14:43
 */
 @Data
 @ToString(callSuper = true)
@@ -25,11 +25,6 @@ import io.swagger.annotations.ApiModelProperty;
 public class ApiLog extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
-
-	/***app Id*/
-	@Column(name = "app_id")
-	@ApiModelProperty(value="app Id", dataType="Long")
-	private Long appId;
 
 	/***web服务标识*/
 	@Column(name = "server_context_path")

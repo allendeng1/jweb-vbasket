@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author 邓超
  *
- * 2023/08/21 17:20
+ * 2023/08/22 14:43
 */
 @RequestMapping(value="apilog")
 @Api(tags="APP日志管理接口")
@@ -20,7 +20,6 @@ public interface ApiLogApiDoc {
 
   @ApiOperation(value = "添加APP日志",notes = "添加APP日志")
   @ApiImplicitParams({
-    @ApiImplicitParam(name="app_id", dataType="Long", paramType="form", required=true, value="app Id"),
     @ApiImplicitParam(name="server_context_path", dataType="String", paramType="form", required=true, value="web服务标识"),
     @ApiImplicitParam(name="ip_address", dataType="String", paramType="form", required=false, value="客户端IP"),
     @ApiImplicitParam(name="user_id", dataType="Long", paramType="form", required=false, value="用户ID"),
@@ -39,7 +38,6 @@ public interface ApiLogApiDoc {
   })
   @PostMapping(value = "/create")
   public ApiResult addApiLog(
-    @RequestParam(value="app_id", required=true) Long appId,
     @RequestParam(value="server_context_path", required=true) String serverContextPath,
     @RequestParam(value="ip_address", required=false) String ipAddress,
     @RequestParam(value="user_id", required=false) Long userId,
@@ -59,7 +57,6 @@ public interface ApiLogApiDoc {
   @ApiOperation(value = "修改APP日志",notes = "修改APP日志")
   @ApiImplicitParams({
     @ApiImplicitParam(name="id", dataType="Long", paramType="form", required=true, value=""),
-    @ApiImplicitParam(name="app_id", dataType="Long", paramType="form", required=false, value="app Id"),
     @ApiImplicitParam(name="server_context_path", dataType="String", paramType="form", required=false, value="web服务标识"),
     @ApiImplicitParam(name="ip_address", dataType="String", paramType="form", required=false, value="客户端IP"),
     @ApiImplicitParam(name="user_id", dataType="Long", paramType="form", required=false, value="用户ID"),
@@ -79,7 +76,6 @@ public interface ApiLogApiDoc {
   @PostMapping(value = "/update")
   public ApiResult editApiLog(
     @RequestParam(value="id", required=true) Long id,
-    @RequestParam(value="app_id", required=false) Long appId,
     @RequestParam(value="server_context_path", required=false) String serverContextPath,
     @RequestParam(value="ip_address", required=false) String ipAddress,
     @RequestParam(value="user_id", required=false) Long userId,
@@ -98,7 +94,6 @@ public interface ApiLogApiDoc {
 
   @ApiOperation(value = "根据条件查询APP日志",notes = "根据条件查询APP日志")
   @ApiImplicitParams({
-    @ApiImplicitParam(name="app_id", dataType="Long", paramType="form", required=false, value="app Id"),
     @ApiImplicitParam(name="server_context_path", dataType="String", paramType="form", required=false, value="web服务标识"),
     @ApiImplicitParam(name="ip_address", dataType="String", paramType="form", required=false, value="客户端IP"),
     @ApiImplicitParam(name="user_id", dataType="Long", paramType="form", required=false, value="用户ID"),
@@ -119,7 +114,6 @@ public interface ApiLogApiDoc {
   })
   @PostMapping(value = "/query")
   public ApiResult getApiLogList(
-    @RequestParam(value="app_id", required=false) Long appId,
     @RequestParam(value="server_context_path", required=false) String serverContextPath,
     @RequestParam(value="ip_address", required=false) String ipAddress,
     @RequestParam(value="user_id", required=false) Long userId,

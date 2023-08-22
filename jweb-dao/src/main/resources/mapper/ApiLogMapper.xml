@@ -5,38 +5,34 @@
 
   <resultMap id="ApiLog.ResultMap" type="com.jweb.dao.entity.ApiLog">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="app_id" jdbcType="bigint" property="appId" />
-    <result column="server_context_path" jdbcType="character varying" property="serverContextPath" />
-    <result column="ip_address" jdbcType="character varying" property="ipAddress" />
-    <result column="user_id" jdbcType="bigint" property="userId" />
-    <result column="req_url" jdbcType="character varying" property="reqUrl" />
-    <result column="req_method" jdbcType="character varying" property="reqMethod" />
-    <result column="begin_time" jdbcType="bigint" property="beginTime" />
-    <result column="end_time" jdbcType="bigint" property="endTime" />
-    <result column="cost_time" jdbcType="bigint" property="costTime" />
-    <result column="is_attack" jdbcType="boolean" property="isAttack" />
-    <result column="req_param" jdbcType="text" property="reqParam" />
-    <result column="controller_name" jdbcType="character varying" property="controllerName" />
-    <result column="controller_method" jdbcType="character varying" property="controllerMethod" />
-    <result column="result_data" jdbcType="text" property="resultData" />
-    <result column="ctdate" jdbcType="bigint" property="ctdate" />
-    <result column="mddate" jdbcType="bigint" property="mddate" />
+    <result column="server_context_path" jdbcType="VARCHAR" property="serverContextPath" />
+    <result column="ip_address" jdbcType="VARCHAR" property="ipAddress" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="req_url" jdbcType="VARCHAR" property="reqUrl" />
+    <result column="req_method" jdbcType="VARCHAR" property="reqMethod" />
+    <result column="begin_time" jdbcType="BIGINT" property="beginTime" />
+    <result column="end_time" jdbcType="BIGINT" property="endTime" />
+    <result column="cost_time" jdbcType="BIGINT" property="costTime" />
+    <result column="is_attack" jdbcType="BOOLEAN" property="isAttack" />
+    <result column="req_param" jdbcType="VARCHAR" property="reqParam" />
+    <result column="controller_name" jdbcType="VARCHAR" property="controllerName" />
+    <result column="controller_method" jdbcType="VARCHAR" property="controllerMethod" />
+    <result column="result_data" jdbcType="VARCHAR" property="resultData" />
+    <result column="ctdate" jdbcType="BIGINT" property="ctdate" />
+    <result column="mddate" jdbcType="BIGINT" property="mddate" />
   </resultMap>
 
   <sql id="ApiLog.clounms">
-    id,app_id,server_context_path,ip_address,user_id,req_url,req_method,begin_time,end_time,cost_time,is_attack,req_param,controller_name,controller_method,result_data,ctdate,mddate
+    id,server_context_path,ip_address,user_id,req_url,req_method,begin_time,end_time,cost_time,is_attack,req_param,controller_name,controller_method,result_data,ctdate,mddate
   </sql>
 
   <sql id="ApiLog.noidclounms">
-    app_id,server_context_path,ip_address,user_id,req_url,req_method,begin_time,end_time,cost_time,is_attack,req_param,controller_name,controller_method,result_data,ctdate,mddate
+    server_context_path,ip_address,user_id,req_url,req_method,begin_time,end_time,cost_time,is_attack,req_param,controller_name,controller_method,result_data,ctdate,mddate
   </sql>
 
   <sql id="ApiLog.where">
     <if test="id != null">
       and id = #{id}
-    </if>
-    <if test="appId != null">
-      and app_id = #{appId}
     </if>
     <if test="serverContextPath != null">
       and server_context_path = #{serverContextPath}
@@ -103,7 +99,7 @@
   </sql>
 
   <insert id="ApiLog.insert" parameterType="com.jweb.dao.entity.ApiLog" useGeneratedKeys="true" keyProperty="id">
-    insert into api_log (<include refid="ApiLog.noidclounms" />) values (#{appId},#{serverContextPath},#{ipAddress},#{userId},#{reqUrl},#{reqMethod},#{beginTime},#{endTime},#{costTime},#{isAttack},#{reqParam},#{controllerName},#{controllerMethod},#{resultData},#{ctdate},#{mddate})
+    insert into api_log (<include refid="ApiLog.noidclounms" />) values (#{serverContextPath},#{ipAddress},#{userId},#{reqUrl},#{reqMethod},#{beginTime},#{endTime},#{costTime},#{isAttack},#{reqParam},#{controllerName},#{controllerMethod},#{resultData},#{ctdate},#{mddate})
   </insert>
 
   <select id="ApiLog.selectIds" resultType="Long" parameterType="com.jweb.dao.entity.ApiLog">
@@ -130,9 +126,6 @@
   <update id="ApiLog.updateById" parameterType="com.jweb.dao.entity.ApiLog">
     update api_log
     <set>
-      <if test="appId != null">
-        app_id = #{appId},
-      </if>
       <if test="serverContextPath != null">
         server_context_path = #{serverContextPath},
       </if>

@@ -58,7 +58,7 @@ public class PgsqlDatasource extends AbstractDataSource{
 			rs = pst.executeQuery();
 			while (rs.next()) {
 				String name = rs.getString("column_name");
-				String dbType = rs.getString("data_type");
+				String dbType = convertDBType(rs.getString("data_type"));
 				String annotation = rs.getString("description");
 				annotation = annotation == null ? "" : annotation;
 				boolean isNotNull = rs.getBoolean("notnull");
@@ -100,6 +100,27 @@ public class PgsqlDatasource extends AbstractDataSource{
 				}
 			}
 		}
+	}
+	
+	private String convertDBType(String dataType){
+		if(dataType.equalsIgnoreCase("int8")){
+			dataType = "bigint";
+		}else if(dataType.equalsIgnoreCase("int2")){
+			dataType =  "Integer";
+		}else if(dataType.equalsIgnoreCase("int4")){
+			dataType =  "Integer";
+		}else if(dataType.equalsIgnoreCase("int6")){
+			dataType =  "Integer";
+		}else if(dataType.equalsIgnoreCase("bool")){
+			dataType =  "BOOLEAN";
+		}else if(dataType.equalsIgnoreCase("timestamp with time zone")){
+			dataType =  "DATE";
+		}else if(dataType.equalsIgnoreCase("timestamptz")){
+			dataType =  "DATE";
+		}else if(dataType.equalsIgnoreCase("text")){
+			dataType =  "varchar";
+		}
+		return dataType.toUpperCase();
 	}
 	
 	private String convertDataType(String dataType){

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author 邓超
  *
- * 2023/08/21 17:20
+ * 2023/08/22 14:43
 */
 @RequestMapping(value="sysconfig")
 @Api(tags="系统配置管理接口")
@@ -20,7 +20,6 @@ public interface SysConfigApiDoc {
 
   @ApiOperation(value = "添加系统配置",notes = "添加系统配置")
   @ApiImplicitParams({
-    @ApiImplicitParam(name="app_id", dataType="Long", paramType="form", required=true, value="app Id"),
     @ApiImplicitParam(name="status", dataType="Integer", paramType="form", required=true, value="状态：0-使用中，1-已废弃"),
     @ApiImplicitParam(name="prop_key", dataType="String", paramType="form", required=true, value="配置KEY"),
     @ApiImplicitParam(name="prop_value", dataType="String", paramType="form", required=false, value="配置值"),
@@ -30,7 +29,6 @@ public interface SysConfigApiDoc {
   })
   @PostMapping(value = "/create")
   public ApiResult addSysConfig(
-    @RequestParam(value="app_id", required=true) Long appId,
     @RequestParam(value="status", required=true) Integer status,
     @RequestParam(value="prop_key", required=true) String propKey,
     @RequestParam(value="prop_value", required=false) String propValue,
@@ -41,7 +39,6 @@ public interface SysConfigApiDoc {
   @ApiOperation(value = "修改系统配置",notes = "修改系统配置")
   @ApiImplicitParams({
     @ApiImplicitParam(name="id", dataType="Long", paramType="form", required=true, value=""),
-    @ApiImplicitParam(name="app_id", dataType="Long", paramType="form", required=false, value="app Id"),
     @ApiImplicitParam(name="status", dataType="Integer", paramType="form", required=false, value="状态：0-使用中，1-已废弃"),
     @ApiImplicitParam(name="prop_key", dataType="String", paramType="form", required=false, value="配置KEY"),
     @ApiImplicitParam(name="prop_value", dataType="String", paramType="form", required=false, value="配置值"),
@@ -52,7 +49,6 @@ public interface SysConfigApiDoc {
   @PostMapping(value = "/update")
   public ApiResult editSysConfig(
     @RequestParam(value="id", required=true) Long id,
-    @RequestParam(value="app_id", required=false) Long appId,
     @RequestParam(value="status", required=false) Integer status,
     @RequestParam(value="prop_key", required=false) String propKey,
     @RequestParam(value="prop_value", required=false) String propValue,
@@ -62,7 +58,6 @@ public interface SysConfigApiDoc {
 
   @ApiOperation(value = "根据条件查询系统配置",notes = "根据条件查询系统配置")
   @ApiImplicitParams({
-    @ApiImplicitParam(name="app_id", dataType="Long", paramType="form", required=false, value="app Id"),
     @ApiImplicitParam(name="status", dataType="Integer", paramType="form", required=false, value="状态：0-使用中，1-已废弃"),
     @ApiImplicitParam(name="prop_key", dataType="String", paramType="form", required=false, value="配置KEY"),
     @ApiImplicitParam(name="prop_value", dataType="String", paramType="form", required=false, value="配置值"),
@@ -74,7 +69,6 @@ public interface SysConfigApiDoc {
   })
   @PostMapping(value = "/query")
   public ApiResult getSysConfigList(
-    @RequestParam(value="app_id", required=false) Long appId,
     @RequestParam(value="status", required=false) Integer status,
     @RequestParam(value="prop_key", required=false) String propKey,
     @RequestParam(value="prop_value", required=false) String propValue,

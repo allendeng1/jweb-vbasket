@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MqMessageLog">
+<!--代码生成器会覆盖此文件，自定义SQL请写到query文件中-->
+
+  <resultMap id="MqMessageLog.ResultMap" type="com.jweb.dao.entity.MqMessageLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="message_id" jdbcType="BIGINT" property="messageId" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="excute_method" jdbcType="VARCHAR" property="excuteMethod" />
+    <result column="excute_handler" jdbcType="VARCHAR" property="excuteHandler" />
+    <result column="start_time" jdbcType="BIGINT" property="startTime" />
+    <result column="end_time" jdbcType="BIGINT" property="endTime" />
+    <result column="result_desc" jdbcType="VARCHAR" property="resultDesc" />
+    <result column="ctdate" jdbcType="BIGINT" property="ctdate" />
+    <result column="mddate" jdbcType="BIGINT" property="mddate" />
+  </resultMap>
+
+  <sql id="MqMessageLog.clounms">
+    id,message_id,type,excute_method,excute_handler,start_time,end_time,result_desc,ctdate,mddate
+  </sql>
+
+  <sql id="MqMessageLog.noidclounms">
+    message_id,type,excute_method,excute_handler,start_time,end_time,result_desc,ctdate,mddate
+  </sql>
+
+  <sql id="MqMessageLog.where">
+    <if test="id != null">
+      and id = #{id}
+    </if>
+    <if test="messageId != null">
+      and message_id = #{messageId}
+    </if>
+    <if test="type != null">
+      and type = #{type}
+    </if>
+    <if test="excuteMethod != null">
+      and excute_method = #{excuteMethod}
+    </if>
+    <if test="excuteHandler != null">
+      and excute_handler = #{excuteHandler}
+    </if>
+    <if test="startTime != null">
+      and start_time = #{startTime}
+    </if>
+    <if test="endTime != null">
+      and end_time = #{endTime}
+    </if>
+    <if test="resultDesc != null">
+      and result_desc = #{resultDesc}
+    </if>
+    <if test="ctdate != null">
+      and ctdate = #{ctdate}
+    </if>
+    <if test="mddate != null">
+      and mddate = #{mddate}
+    </if>
+    <if test="customCondition != null and customCondition != '' ">
+      and ${customCondition}
+    </if>
+  </sql>
+
+  <sql id="MqMessageLog.orderAndlimit">
+    <if test="orderCondition != null and orderCondition != '' ">
+      order by ${orderCondition}
+    </if>
+    <if test="limit != null and limit > 0 ">
+      <if test="offset != null and offset >= 0 ">
+        limit #{limit} offset #{offset}
+      </if>
+      <if test="offset == null or offset &lt; 0 ">
+        limit #{limit}
+      </if>
+    </if>
+  </sql>
+
+  <insert id="MqMessageLog.insert" parameterType="com.jweb.dao.entity.MqMessageLog" useGeneratedKeys="true" keyProperty="id">
+    insert into mq_message_log (<include refid="MqMessageLog.noidclounms" />) values (#{messageId},#{type},#{excuteMethod},#{excuteHandler},#{startTime},#{endTime},#{resultDesc},#{ctdate},#{mddate})
+  </insert>
+
+  <select id="MqMessageLog.selectIds" resultType="Long" parameterType="com.jweb.dao.entity.MqMessageLog">
+    select id from mq_message_log where 1=1
+    <include refid="MqMessageLog.where" />
+    <include refid="MqMessageLog.orderAndlimit" />
+  </select>
+
+  <select id="MqMessageLog.selectList" resultMap="MqMessageLog.ResultMap" parameterType="com.jweb.dao.entity.MqMessageLog">
+    select <include refid="MqMessageLog.clounms" /> from mq_message_log where 1=1
+    <include refid="MqMessageLog.where" />
+    <include refid="MqMessageLog.orderAndlimit" />
+  </select>
+
+  <select id="MqMessageLog.selectById" resultMap="MqMessageLog.ResultMap" parameterType="Long">
+    select <include refid="MqMessageLog.clounms" /> from mq_message_log where id=#{value}
+  </select>
+
+  <select id="MqMessageLog.selectCount" resultType="Integer" parameterType="com.jweb.dao.entity.MqMessageLog">
+    select count(*) from mq_message_log where 1=1
+    <include refid="MqMessageLog.where" />
+  </select>
+
+  <update id="MqMessageLog.updateById" parameterType="com.jweb.dao.entity.MqMessageLog">
+    update mq_message_log
+    <set>
+      <if test="messageId != null">
+        message_id = #{messageId},
+      </if>
+      <if test="type != null">
+        type = #{type},
+      </if>
+      <if test="excuteMethod != null">
+        excute_method = #{excuteMethod},
+      </if>
+      <if test="excuteHandler != null">
+        excute_handler = #{excuteHandler},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime},
+      </if>
+      <if test="resultDesc != null">
+        result_desc = #{resultDesc},
+      </if>
+      <if test="ctdate != null">
+        ctdate = #{ctdate},
+      </if>
+      <if test="mddate != null">
+        mddate = #{mddate},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
+  <delete id="MqMessageLog.deleteById" parameterType="Long">
+    delete from mq_message_log where id = #{value}
+  </delete>
+</mapper>

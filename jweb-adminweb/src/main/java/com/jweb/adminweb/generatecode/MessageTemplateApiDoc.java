@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author 邓超
  *
- * 2023/08/21 17:20
+ * 2023/08/22 14:43
 */
 @RequestMapping(value="messagetemplate")
 @Api(tags="消息模板管理接口")
@@ -20,7 +20,6 @@ public interface MessageTemplateApiDoc {
 
   @ApiOperation(value = "添加消息模板",notes = "添加消息模板")
   @ApiImplicitParams({
-    @ApiImplicitParam(name="app_id", dataType="Long", paramType="form", required=true, value="app Id"),
     @ApiImplicitParam(name="code", dataType="String", paramType="form", required=true, value="模板编号"),
     @ApiImplicitParam(name="sent_channel", dataType="String", paramType="form", required=true, value="发送渠道"),
     @ApiImplicitParam(name="template_code", dataType="String", paramType="form", required=false, value="第三方平台模板编号"),
@@ -31,7 +30,6 @@ public interface MessageTemplateApiDoc {
   })
   @PostMapping(value = "/create")
   public ApiResult addMessageTemplate(
-    @RequestParam(value="app_id", required=true) Long appId,
     @RequestParam(value="code", required=true) String code,
     @RequestParam(value="sent_channel", required=true) String sentChannel,
     @RequestParam(value="template_code", required=false) String templateCode,
@@ -43,7 +41,6 @@ public interface MessageTemplateApiDoc {
   @ApiOperation(value = "修改消息模板",notes = "修改消息模板")
   @ApiImplicitParams({
     @ApiImplicitParam(name="id", dataType="Long", paramType="form", required=true, value=""),
-    @ApiImplicitParam(name="app_id", dataType="Long", paramType="form", required=false, value="app Id"),
     @ApiImplicitParam(name="code", dataType="String", paramType="form", required=false, value="模板编号"),
     @ApiImplicitParam(name="sent_channel", dataType="String", paramType="form", required=false, value="发送渠道"),
     @ApiImplicitParam(name="template_code", dataType="String", paramType="form", required=false, value="第三方平台模板编号"),
@@ -55,7 +52,6 @@ public interface MessageTemplateApiDoc {
   @PostMapping(value = "/update")
   public ApiResult editMessageTemplate(
     @RequestParam(value="id", required=true) Long id,
-    @RequestParam(value="app_id", required=false) Long appId,
     @RequestParam(value="code", required=false) String code,
     @RequestParam(value="sent_channel", required=false) String sentChannel,
     @RequestParam(value="template_code", required=false) String templateCode,
@@ -66,7 +62,6 @@ public interface MessageTemplateApiDoc {
 
   @ApiOperation(value = "根据条件查询消息模板",notes = "根据条件查询消息模板")
   @ApiImplicitParams({
-    @ApiImplicitParam(name="app_id", dataType="Long", paramType="form", required=false, value="app Id"),
     @ApiImplicitParam(name="code", dataType="String", paramType="form", required=false, value="模板编号"),
     @ApiImplicitParam(name="sent_channel", dataType="String", paramType="form", required=false, value="发送渠道"),
     @ApiImplicitParam(name="template_code", dataType="String", paramType="form", required=false, value="第三方平台模板编号"),
@@ -79,7 +74,6 @@ public interface MessageTemplateApiDoc {
   })
   @PostMapping(value = "/query")
   public ApiResult getMessageTemplateList(
-    @RequestParam(value="app_id", required=false) Long appId,
     @RequestParam(value="code", required=false) String code,
     @RequestParam(value="sent_channel", required=false) String sentChannel,
     @RequestParam(value="template_code", required=false) String templateCode,

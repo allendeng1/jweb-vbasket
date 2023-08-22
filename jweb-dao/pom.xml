@@ -69,5 +69,9 @@
 		    <groupId>org.dom4j</groupId>
 		    <artifactId>dom4j</artifactId>
 		</dependency>
+		<dependency>
+        	<groupId>org.flywaydb</groupId>
+        	<artifactId>flyway-core</artifactId>
+        </dependency>
   </dependencies>
 </project>

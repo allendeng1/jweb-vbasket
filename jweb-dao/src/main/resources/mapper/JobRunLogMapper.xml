@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="JobRunLog">
+<!--代码生成器会覆盖此文件，自定义SQL请写到query文件中-->
+
+  <resultMap id="JobRunLog.ResultMap" type="com.jweb.dao.entity.JobRunLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="run_no" jdbcType="VARCHAR" property="runNo" />
+    <result column="task_id" jdbcType="BIGINT" property="taskId" />
+    <result column="task_no" jdbcType="VARCHAR" property="taskNo" />
+    <result column="task_name" jdbcType="VARCHAR" property="taskName" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="run_result" jdbcType="INTEGER" property="runResult" />
+    <result column="start_date" jdbcType="BIGINT" property="startDate" />
+    <result column="end_date" jdbcType="BIGINT" property="endDate" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="ctdate" jdbcType="BIGINT" property="ctdate" />
+    <result column="mddate" jdbcType="BIGINT" property="mddate" />
+  </resultMap>
+
+  <sql id="JobRunLog.clounms">
+    id,run_no,task_id,task_no,task_name,status,run_result,start_date,end_date,remark,ctdate,mddate
+  </sql>
+
+  <sql id="JobRunLog.noidclounms">
+    run_no,task_id,task_no,task_name,status,run_result,start_date,end_date,remark,ctdate,mddate
+  </sql>
+
+  <sql id="JobRunLog.where">
+    <if test="id != null">
+      and id = #{id}
+    </if>
+    <if test="runNo != null">
+      and run_no = #{runNo}
+    </if>
+    <if test="taskId != null">
+      and task_id = #{taskId}
+    </if>
+    <if test="taskNo != null">
+      and task_no = #{taskNo}
+    </if>
+    <if test="taskName != null">
+      and task_name = #{taskName}
+    </if>
+    <if test="status != null">
+      and status = #{status}
+    </if>
+    <if test="runResult != null">
+      and run_result = #{runResult}
+    </if>
+    <if test="startDate != null">
+      and start_date = #{startDate}
+    </if>
+    <if test="endDate != null">
+      and end_date = #{endDate}
+    </if>
+    <if test="remark != null">
+      and remark = #{remark}
+    </if>
+    <if test="ctdate != null">
+      and ctdate = #{ctdate}
+    </if>
+    <if test="mddate != null">
+      and mddate = #{mddate}
+    </if>
+    <if test="customCondition != null and customCondition != '' ">
+      and ${customCondition}
+    </if>
+  </sql>
+
+  <sql id="JobRunLog.orderAndlimit">
+    <if test="orderCondition != null and orderCondition != '' ">
+      order by ${orderCondition}
+    </if>
+    <if test="limit != null and limit > 0 ">
+      <if test="offset != null and offset >= 0 ">
+        limit #{limit} offset #{offset}
+      </if>
+      <if test="offset == null or offset &lt; 0 ">
+        limit #{limit}
+      </if>
+    </if>
+  </sql>
+
+  <insert id="JobRunLog.insert" parameterType="com.jweb.dao.entity.JobRunLog" useGeneratedKeys="true" keyProperty="id">
+    insert into job_run_log (<include refid="JobRunLog.noidclounms" />) values (#{runNo},#{taskId},#{taskNo},#{taskName},#{status},#{runResult},#{startDate},#{endDate},#{remark},#{ctdate},#{mddate})
+  </insert>
+
+  <select id="JobRunLog.selectIds" resultType="Long" parameterType="com.jweb.dao.entity.JobRunLog">
+    select id from job_run_log where 1=1
+    <include refid="JobRunLog.where" />
+    <include refid="JobRunLog.orderAndlimit" />
+  </select>
+
+  <select id="JobRunLog.selectList" resultMap="JobRunLog.ResultMap" parameterType="com.jweb.dao.entity.JobRunLog">
+    select <include refid="JobRunLog.clounms" /> from job_run_log where 1=1
+    <include refid="JobRunLog.where" />
+    <include refid="JobRunLog.orderAndlimit" />
+  </select>
+
+  <select id="JobRunLog.selectById" resultMap="JobRunLog.ResultMap" parameterType="Long">
+    select <include refid="JobRunLog.clounms" /> from job_run_log where id=#{value}
+  </select>
+
+  <select id="JobRunLog.selectCount" resultType="Integer" parameterType="com.jweb.dao.entity.JobRunLog">
+    select count(*) from job_run_log where 1=1
+    <include refid="JobRunLog.where" />
+  </select>
+
+  <update id="JobRunLog.updateById" parameterType="com.jweb.dao.entity.JobRunLog">
+    update job_run_log
+    <set>
+      <if test="runNo != null">
+        run_no = #{runNo},
+      </if>
+      <if test="taskId != null">
+        task_id = #{taskId},
+      </if>
+      <if test="taskNo != null">
+        task_no = #{taskNo},
+      </if>
+      <if test="taskName != null">
+        task_name = #{taskName},
+      </if>
+      <if test="status != null">
+        status = #{status},
+      </if>
+      <if test="runResult != null">
+        run_result = #{runResult},
+      </if>
+      <if test="startDate != null">
+        start_date = #{startDate},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate},
+      </if>
+      <if test="remark != null">
+        remark = #{remark},
+      </if>
+      <if test="ctdate != null">
+        ctdate = #{ctdate},
+      </if>
+      <if test="mddate != null">
+        mddate = #{mddate},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
+  <delete id="JobRunLog.deleteById" parameterType="Long">
+    delete from job_run_log where id = #{value}
+  </delete>
+</mapper>

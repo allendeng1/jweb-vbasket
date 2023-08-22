@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MqMessage">
+<!--自定义SQL，代码生成器不会覆盖此文件-->
+
+	<resultMap id="MqMessage.QueueCountDtoResultMap" type="com.jweb.dao.dto.MqQueueCountDto">
+	    <result column="queue_name" jdbcType="VARCHAR" property="queueName" />
+	    <result column="msg_size" jdbcType="INTEGER" property="msgSize" />
+	</resultMap>
+	<select id="MqMessage.getMqQueueCount" resultMap="MqMessage.QueueCountDtoResultMap">
+		select queue_name, count(*) as msg_size from mq_message where status = 1 and is_delete = false and topic_name is null GROUP BY queue_name 
+	</select>
+</mapper>

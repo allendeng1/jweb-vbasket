@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author 邓超
  *
- * 2023/08/21 17:20
+ * 2023/08/22 14:43
 */
 @RequestMapping(value="messagerecord")
 @Api(tags="消息发送记录管理接口")
@@ -20,7 +20,6 @@ public interface MessageRecordApiDoc {
 
   @ApiOperation(value = "添加消息发送记录",notes = "添加消息发送记录")
   @ApiImplicitParams({
-    @ApiImplicitParam(name="app_id", dataType="Long", paramType="form", required=true, value="app Id"),
     @ApiImplicitParam(name="code", dataType="String", paramType="form", required=true, value="模板编号"),
     @ApiImplicitParam(name="sent_channel", dataType="String", paramType="form", required=true, value="发送渠道"),
     @ApiImplicitParam(name="status", dataType="Integer", paramType="form", required=true, value="状态：0-待发送，1-发送中，2-发送成功，3-发送失败"),
@@ -41,7 +40,6 @@ public interface MessageRecordApiDoc {
   })
   @PostMapping(value = "/create")
   public ApiResult addMessageRecord(
-    @RequestParam(value="app_id", required=true) Long appId,
     @RequestParam(value="code", required=true) String code,
     @RequestParam(value="sent_channel", required=true) String sentChannel,
     @RequestParam(value="status", required=true) Integer status,
@@ -63,7 +61,6 @@ public interface MessageRecordApiDoc {
   @ApiOperation(value = "修改消息发送记录",notes = "修改消息发送记录")
   @ApiImplicitParams({
     @ApiImplicitParam(name="id", dataType="Long", paramType="form", required=true, value=""),
-    @ApiImplicitParam(name="app_id", dataType="Long", paramType="form", required=false, value="app Id"),
     @ApiImplicitParam(name="code", dataType="String", paramType="form", required=false, value="模板编号"),
     @ApiImplicitParam(name="sent_channel", dataType="String", paramType="form", required=false, value="发送渠道"),
     @ApiImplicitParam(name="status", dataType="Integer", paramType="form", required=false, value="状态：0-待发送，1-发送中，2-发送成功，3-发送失败"),
@@ -85,7 +82,6 @@ public interface MessageRecordApiDoc {
   @PostMapping(value = "/update")
   public ApiResult editMessageRecord(
     @RequestParam(value="id", required=true) Long id,
-    @RequestParam(value="app_id", required=false) Long appId,
     @RequestParam(value="code", required=false) String code,
     @RequestParam(value="sent_channel", required=false) String sentChannel,
     @RequestParam(value="status", required=false) Integer status,
@@ -106,7 +102,6 @@ public interface MessageRecordApiDoc {
 
   @ApiOperation(value = "根据条件查询消息发送记录",notes = "根据条件查询消息发送记录")
   @ApiImplicitParams({
-    @ApiImplicitParam(name="app_id", dataType="Long", paramType="form", required=false, value="app Id"),
     @ApiImplicitParam(name="code", dataType="String", paramType="form", required=false, value="模板编号"),
     @ApiImplicitParam(name="sent_channel", dataType="String", paramType="form", required=false, value="发送渠道"),
     @ApiImplicitParam(name="status", dataType="Integer", paramType="form", required=false, value="状态：0-待发送，1-发送中，2-发送成功，3-发送失败"),
@@ -129,7 +124,6 @@ public interface MessageRecordApiDoc {
   })
   @PostMapping(value = "/query")
   public ApiResult getMessageRecordList(
-    @RequestParam(value="app_id", required=false) Long appId,
     @RequestParam(value="code", required=false) String code,
     @RequestParam(value="sent_channel", required=false) String sentChannel,
     @RequestParam(value="status", required=false) Integer status,

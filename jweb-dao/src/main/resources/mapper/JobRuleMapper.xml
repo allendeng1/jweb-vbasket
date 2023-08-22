@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="JobRule">
+<!--代码生成器会覆盖此文件，自定义SQL请写到query文件中-->
+
+  <resultMap id="JobRule.ResultMap" type="com.jweb.dao.entity.JobRule">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="task_no" jdbcType="VARCHAR" property="taskNo" />
+    <result column="task_name" jdbcType="VARCHAR" property="taskName" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="task_cron" jdbcType="VARCHAR" property="taskCron" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="run_status" jdbcType="INTEGER" property="runStatus" />
+    <result column="handler_name" jdbcType="VARCHAR" property="handlerName" />
+    <result column="task_content" jdbcType="VARCHAR" property="taskContent" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="ctdate" jdbcType="BIGINT" property="ctdate" />
+    <result column="mddate" jdbcType="BIGINT" property="mddate" />
+  </resultMap>
+
+  <sql id="JobRule.clounms">
+    id,task_no,task_name,type,task_cron,status,run_status,handler_name,task_content,remark,ctdate,mddate
+  </sql>
+
+  <sql id="JobRule.noidclounms">
+    task_no,task_name,type,task_cron,status,run_status,handler_name,task_content,remark,ctdate,mddate
+  </sql>
+
+  <sql id="JobRule.where">
+    <if test="id != null">
+      and id = #{id}
+    </if>
+    <if test="taskNo != null">
+      and task_no = #{taskNo}
+    </if>
+    <if test="taskName != null">
+      and task_name = #{taskName}
+    </if>
+    <if test="type != null">
+      and type = #{type}
+    </if>
+    <if test="taskCron != null">
+      and task_cron = #{taskCron}
+    </if>
+    <if test="status != null">
+      and status = #{status}
+    </if>
+    <if test="runStatus != null">
+      and run_status = #{runStatus}
+    </if>
+    <if test="handlerName != null">
+      and handler_name = #{handlerName}
+    </if>
+    <if test="taskContent != null">
+      and task_content = #{taskContent}
+    </if>
+    <if test="remark != null">
+      and remark = #{remark}
+    </if>
+    <if test="ctdate != null">
+      and ctdate = #{ctdate}
+    </if>
+    <if test="mddate != null">
+      and mddate = #{mddate}
+    </if>
+    <if test="customCondition != null and customCondition != '' ">
+      and ${customCondition}
+    </if>
+  </sql>
+
+  <sql id="JobRule.orderAndlimit">
+    <if test="orderCondition != null and orderCondition != '' ">
+      order by ${orderCondition}
+    </if>
+    <if test="limit != null and limit > 0 ">
+      <if test="offset != null and offset >= 0 ">
+        limit #{limit} offset #{offset}
+      </if>
+      <if test="offset == null or offset &lt; 0 ">
+        limit #{limit}
+      </if>
+    </if>
+  </sql>
+
+  <insert id="JobRule.insert" parameterType="com.jweb.dao.entity.JobRule" useGeneratedKeys="true" keyProperty="id">
+    insert into job_rule (<include refid="JobRule.noidclounms" />) values (#{taskNo},#{taskName},#{type},#{taskCron},#{status},#{runStatus},#{handlerName},#{taskContent},#{remark},#{ctdate},#{mddate})
+  </insert>
+
+  <select id="JobRule.selectIds" resultType="Long" parameterType="com.jweb.dao.entity.JobRule">
+    select id from job_rule where 1=1
+    <include refid="JobRule.where" />
+    <include refid="JobRule.orderAndlimit" />
+  </select>
+
+  <select id="JobRule.selectList" resultMap="JobRule.ResultMap" parameterType="com.jweb.dao.entity.JobRule">
+    select <include refid="JobRule.clounms" /> from job_rule where 1=1
+    <include refid="JobRule.where" />
+    <include refid="JobRule.orderAndlimit" />
+  </select>
+
+  <select id="JobRule.selectById" resultMap="JobRule.ResultMap" parameterType="Long">
+    select <include refid="JobRule.clounms" /> from job_rule where id=#{value}
+  </select>
+
+  <select id="JobRule.selectCount" resultType="Integer" parameterType="com.jweb.dao.entity.JobRule">
+    select count(*) from job_rule where 1=1
+    <include refid="JobRule.where" />
+  </select>
+
+  <update id="JobRule.updateById" parameterType="com.jweb.dao.entity.JobRule">
+    update job_rule
+    <set>
+      <if test="taskNo != null">
+        task_no = #{taskNo},
+      </if>
+      <if test="taskName != null">
+        task_name = #{taskName},
+      </if>
+      <if test="type != null">
+        type = #{type},
+      </if>
+      <if test="taskCron != null">
+        task_cron = #{taskCron},
+      </if>
+      <if test="status != null">
+        status = #{status},
+      </if>
+      <if test="runStatus != null">
+        run_status = #{runStatus},
+      </if>
+      <if test="handlerName != null">
+        handler_name = #{handlerName},
+      </if>
+      <if test="taskContent != null">
+        task_content = #{taskContent},
+      </if>
+      <if test="remark != null">
+        remark = #{remark},
+      </if>
+      <if test="ctdate != null">
+        ctdate = #{ctdate},
+      </if>
+      <if test="mddate != null">
+        mddate = #{mddate},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
+  <delete id="JobRule.deleteById" parameterType="Long">
+    delete from job_rule where id = #{value}
+  </delete>
+</mapper>

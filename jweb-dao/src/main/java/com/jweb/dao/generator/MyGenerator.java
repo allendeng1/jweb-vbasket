@@ -20,17 +20,17 @@ public class MyGenerator {
 		for(Table table : tables){
 			TableInfo tableInfo = dataSource.getTableInfo(table.getSchema(), table.getTableName(), table.isCreateIndexDoc());
 			
-			//new JavaEntityProducer(tableInfo, context).run();
+			new JavaEntityProducer(tableInfo, context).run();
 			
-			//new JavaDaoProducer(tableInfo, context).run();
+			new JavaDaoProducer(tableInfo, context).run();
 			
-			//new JavaDaoImplProducer(tableInfo, context).run();
+			new JavaDaoImplProducer(tableInfo, context).run();
 			
-			//new JavaServiceProducer(tableInfo, context).run();
+			new JavaServiceProducer(tableInfo, context).run();
 			
-			//new JavaServiceImplProducer(tableInfo, context).run();
+			new JavaServiceImplProducer(tableInfo, context).run();
 			
-			//new JavaApivoProducer(tableInfo, context).run();
+			new JavaApivoProducer(tableInfo, context).run();
 			
 			new JavaApidocProducer(tableInfo, context).run();
 			
@@ -38,9 +38,9 @@ public class MyGenerator {
 			
 			//new JavaMapperProducer(tableInfo, context).run();
 			
-			//new JavaMapperXmlProducer(tableInfo, context).run();
+			new JavaMapperXmlProducer(tableInfo, context).run();
 			
-			//new JavaQueryXmlProducer(tableInfo, context).run();
+			new JavaQueryXmlProducer(tableInfo, context).run();
 			
 		}
 		

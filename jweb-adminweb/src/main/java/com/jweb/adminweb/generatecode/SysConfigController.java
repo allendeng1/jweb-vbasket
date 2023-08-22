@@ -14,7 +14,7 @@ import com.jweb.service.SysConfigService;
  *
  * @author 邓超
  *
- * 2023/08/21 17:20
+ * 2023/08/22 14:43
 */
 @RestController
 public class SysConfigController extends BaseController implements SysConfigApiDoc {
@@ -24,7 +24,6 @@ public class SysConfigController extends BaseController implements SysConfigApiD
 
   @Override
   public ApiResult addSysConfig(
-    Long appId,
     Integer status,
     String propKey,
     String propValue,
@@ -34,7 +33,6 @@ public class SysConfigController extends BaseController implements SysConfigApiD
     ApiResult result = new ApiResult();
     try {
       SysConfig entity = new SysConfig();
-      entity.setAppId(appId);
       entity.setStatus(status);
       entity.setPropKey(propKey);
       entity.setPropValue(propValue);
@@ -51,7 +49,6 @@ public class SysConfigController extends BaseController implements SysConfigApiD
   @Override
   public ApiResult editSysConfig(
     Long id,
-    Long appId,
     Integer status,
     String propKey,
     String propValue,
@@ -62,7 +59,6 @@ public class SysConfigController extends BaseController implements SysConfigApiD
     try {
       SysConfig entity = new SysConfig();
       entity.setId(id);
-      entity.setAppId(appId);
       entity.setStatus(status);
       entity.setPropKey(propKey);
       entity.setPropValue(propValue);
@@ -78,7 +74,6 @@ public class SysConfigController extends BaseController implements SysConfigApiD
 
   @Override
   public SysConfigResult getSysConfigList(
-    Long appId,
     Integer status,
     String propKey,
     String propValue,
@@ -90,7 +85,6 @@ public class SysConfigController extends BaseController implements SysConfigApiD
     SysConfigResult result = new SysConfigResult();
     try {
       SysConfig entity = new SysConfig();
-      entity.setAppId(appId);
       entity.setStatus(status);
       entity.setPropKey(propKey);
       entity.setPropValue(propValue);

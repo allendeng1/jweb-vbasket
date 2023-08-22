@@ -5,13 +5,13 @@
 
   <resultMap id="SysDictionary.ResultMap" type="com.jweb.dao.entity.SysDictionary">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="type" jdbcType="character varying" property="type" />
-    <result column="region" jdbcType="character varying" property="region" />
-    <result column="name" jdbcType="character varying" property="name" />
-    <result column="status" jdbcType="smallint" property="status" />
-    <result column="sort_col" jdbcType="smallint" property="sortCol" />
-    <result column="ctdate" jdbcType="bigint" property="ctdate" />
-    <result column="mddate" jdbcType="bigint" property="mddate" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="region" jdbcType="VARCHAR" property="region" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="sort_col" jdbcType="INTEGER" property="sortCol" />
+    <result column="ctdate" jdbcType="BIGINT" property="ctdate" />
+    <result column="mddate" jdbcType="BIGINT" property="mddate" />
   </resultMap>
 
   <sql id="SysDictionary.clounms">

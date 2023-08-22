@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MqMessage">
+<!--代码生成器会覆盖此文件，自定义SQL请写到query文件中-->
+
+  <resultMap id="MqMessage.ResultMap" type="com.jweb.dao.entity.MqMessage">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="channel" jdbcType="VARCHAR" property="channel" />
+    <result column="topic_name" jdbcType="VARCHAR" property="topicName" />
+    <result column="queue_name" jdbcType="VARCHAR" property="queueName" />
+    <result column="biz_type" jdbcType="VARCHAR" property="bizType" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="publish_time" jdbcType="BIGINT" property="publishTime" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="is_delete" jdbcType="BOOLEAN" property="isDelete" />
+    <result column="delete_time" jdbcType="BIGINT" property="deleteTime" />
+    <result column="ctdate" jdbcType="BIGINT" property="ctdate" />
+    <result column="mddate" jdbcType="BIGINT" property="mddate" />
+  </resultMap>
+
+  <sql id="MqMessage.clounms">
+    id,channel,topic_name,queue_name,biz_type,status,publish_time,content,is_delete,delete_time,ctdate,mddate
+  </sql>
+
+  <sql id="MqMessage.noidclounms">
+    channel,topic_name,queue_name,biz_type,status,publish_time,content,is_delete,delete_time,ctdate,mddate
+  </sql>
+
+  <sql id="MqMessage.where">
+    <if test="id != null">
+      and id = #{id}
+    </if>
+    <if test="channel != null">
+      and channel = #{channel}
+    </if>
+    <if test="topicName != null">
+      and topic_name = #{topicName}
+    </if>
+    <if test="queueName != null">
+      and queue_name = #{queueName}
+    </if>
+    <if test="bizType != null">
+      and biz_type = #{bizType}
+    </if>
+    <if test="status != null">
+      and status = #{status}
+    </if>
+    <if test="publishTime != null">
+      and publish_time = #{publishTime}
+    </if>
+    <if test="content != null">
+      and content = #{content}
+    </if>
+    <if test="isDelete != null">
+      and is_delete = #{isDelete}
+    </if>
+    <if test="deleteTime != null">
+      and delete_time = #{deleteTime}
+    </if>
+    <if test="ctdate != null">
+      and ctdate = #{ctdate}
+    </if>
+    <if test="mddate != null">
+      and mddate = #{mddate}
+    </if>
+    <if test="customCondition != null and customCondition != '' ">
+      and ${customCondition}
+    </if>
+  </sql>
+
+  <sql id="MqMessage.orderAndlimit">
+    <if test="orderCondition != null and orderCondition != '' ">
+      order by ${orderCondition}
+    </if>
+    <if test="limit != null and limit > 0 ">
+      <if test="offset != null and offset >= 0 ">
+        limit #{limit} offset #{offset}
+      </if>
+      <if test="offset == null or offset &lt; 0 ">
+        limit #{limit}
+      </if>
+    </if>
+  </sql>
+
+  <insert id="MqMessage.insert" parameterType="com.jweb.dao.entity.MqMessage" useGeneratedKeys="true" keyProperty="id">
+    insert into mq_message (<include refid="MqMessage.noidclounms" />) values (#{channel},#{topicName},#{queueName},#{bizType},#{status},#{publishTime},#{content},#{isDelete},#{deleteTime},#{ctdate},#{mddate})
+  </insert>
+
+  <select id="MqMessage.selectIds" resultType="Long" parameterType="com.jweb.dao.entity.MqMessage">
+    select id from mq_message where 1=1
+    <include refid="MqMessage.where" />
+    <include refid="MqMessage.orderAndlimit" />
+  </select>
+
+  <select id="MqMessage.selectList" resultMap="MqMessage.ResultMap" parameterType="com.jweb.dao.entity.MqMessage">
+    select <include refid="MqMessage.clounms" /> from mq_message where 1=1
+    <include refid="MqMessage.where" />
+    <include refid="MqMessage.orderAndlimit" />
+  </select>
+
+  <select id="MqMessage.selectById" resultMap="MqMessage.ResultMap" parameterType="Long">
+    select <include refid="MqMessage.clounms" /> from mq_message where id=#{value}
+  </select>
+
+  <select id="MqMessage.selectCount" resultType="Integer" parameterType="com.jweb.dao.entity.MqMessage">
+    select count(*) from mq_message where 1=1
+    <include refid="MqMessage.where" />
+  </select>
+
+  <update id="MqMessage.updateById" parameterType="com.jweb.dao.entity.MqMessage">
+    update mq_message
+    <set>
+      <if test="channel != null">
+        channel = #{channel},
+      </if>
+      <if test="topicName != null">
+        topic_name = #{topicName},
+      </if>
+      <if test="queueName != null">
+        queue_name = #{queueName},
+      </if>
+      <if test="bizType != null">
+        biz_type = #{bizType},
+      </if>
+      <if test="status != null">
+        status = #{status},
+      </if>
+      <if test="publishTime != null">
+        publish_time = #{publishTime},
+      </if>
+      <if test="content != null">
+        content = #{content},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete},
+      </if>
+      <if test="deleteTime != null">
+        delete_time = #{deleteTime},
+      </if>
+      <if test="ctdate != null">
+        ctdate = #{ctdate},
+      </if>
+      <if test="mddate != null">
+        mddate = #{mddate},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
+  <delete id="MqMessage.deleteById" parameterType="Long">
+    delete from mq_message where id = #{value}
+  </delete>
+</mapper>

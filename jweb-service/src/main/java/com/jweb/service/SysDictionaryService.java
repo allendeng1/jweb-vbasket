@@ -9,7 +9,7 @@ import com.jweb.dao.entity.SysDictionary;
  *
  * @author 邓超
  *
- * 2023/08/20 13:15
+ * 2023/08/22 11:27
 */
 public interface SysDictionaryService {
 

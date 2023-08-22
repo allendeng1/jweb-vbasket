@@ -5,30 +5,26 @@
 
   <resultMap id="MessageTemplate.ResultMap" type="com.jweb.dao.entity.MessageTemplate">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="app_id" jdbcType="bigint" property="appId" />
-    <result column="code" jdbcType="character varying" property="code" />
-    <result column="sent_channel" jdbcType="character varying" property="sentChannel" />
-    <result column="template_code" jdbcType="character varying" property="templateCode" />
-    <result column="content" jdbcType="text" property="content" />
-    <result column="is_delete" jdbcType="boolean" property="isDelete" />
-    <result column="ctdate" jdbcType="bigint" property="ctdate" />
-    <result column="mddate" jdbcType="bigint" property="mddate" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="sent_channel" jdbcType="VARCHAR" property="sentChannel" />
+    <result column="template_code" jdbcType="VARCHAR" property="templateCode" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="is_delete" jdbcType="BOOLEAN" property="isDelete" />
+    <result column="ctdate" jdbcType="BIGINT" property="ctdate" />
+    <result column="mddate" jdbcType="BIGINT" property="mddate" />
   </resultMap>
 
   <sql id="MessageTemplate.clounms">
-    id,app_id,code,sent_channel,template_code,content,is_delete,ctdate,mddate
+    id,code,sent_channel,template_code,content,is_delete,ctdate,mddate
   </sql>
 
   <sql id="MessageTemplate.noidclounms">
-    app_id,code,sent_channel,template_code,content,is_delete,ctdate,mddate
+    code,sent_channel,template_code,content,is_delete,ctdate,mddate
   </sql>
 
   <sql id="MessageTemplate.where">
     <if test="id != null">
       and id = #{id}
-    </if>
-    <if test="appId != null">
-      and app_id = #{appId}
     </if>
     <if test="code != null">
       and code = #{code}
@@ -71,7 +67,7 @@
   </sql>
 
   <insert id="MessageTemplate.insert" parameterType="com.jweb.dao.entity.MessageTemplate" useGeneratedKeys="true" keyProperty="id">
-    insert into message_template (<include refid="MessageTemplate.noidclounms" />) values (#{appId},#{code},#{sentChannel},#{templateCode},#{content},#{isDelete},#{ctdate},#{mddate})
+    insert into message_template (<include refid="MessageTemplate.noidclounms" />) values (#{code},#{sentChannel},#{templateCode},#{content},#{isDelete},#{ctdate},#{mddate})
   </insert>
 
   <select id="MessageTemplate.selectIds" resultType="Long" parameterType="com.jweb.dao.entity.MessageTemplate">
@@ -98,9 +94,6 @@
   <update id="MessageTemplate.updateById" parameterType="com.jweb.dao.entity.MessageTemplate">
     update message_template
     <set>
-      <if test="appId != null">
-        app_id = #{appId},
-      </if>
       <if test="code != null">
         code = #{code},
       </if>

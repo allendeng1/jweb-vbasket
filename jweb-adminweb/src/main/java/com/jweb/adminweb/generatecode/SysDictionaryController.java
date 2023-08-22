@@ -14,7 +14,7 @@ import com.jweb.service.SysDictionaryService;
  *
  * @author 邓超
  *
- * 2023/08/21 17:20
+ * 2023/08/22 14:43
 */
 @RestController
 public class SysDictionaryController extends BaseController implements SysDictionaryApiDoc {

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author 邓超
  *
- * 2023/08/21 17:20
+ * 2023/08/22 14:43
 */
 @RequestMapping(value="filestorage")
 @Api(tags="文件存储记录管理接口")
@@ -20,7 +20,6 @@ public interface FileStorageApiDoc {
 
   @ApiOperation(value = "添加文件存储记录",notes = "添加文件存储记录")
   @ApiImplicitParams({
-    @ApiImplicitParam(name="app_id", dataType="Long", paramType="form", required=true, value="app Id"),
     @ApiImplicitParam(name="storage_site", dataType="String", paramType="form", required=true, value="存储站点"),
     @ApiImplicitParam(name="owner", dataType="String", paramType="form", required=true, value="拥有者"),
     @ApiImplicitParam(name="type", dataType="Integer", paramType="form", required=true, value="业务类型"),
@@ -34,7 +33,6 @@ public interface FileStorageApiDoc {
   })
   @PostMapping(value = "/create")
   public ApiResult addFileStorage(
-    @RequestParam(value="app_id", required=true) Long appId,
     @RequestParam(value="storage_site", required=true) String storageSite,
     @RequestParam(value="owner", required=true) String owner,
     @RequestParam(value="type", required=true) Integer type,
@@ -49,7 +47,6 @@ public interface FileStorageApiDoc {
   @ApiOperation(value = "修改文件存储记录",notes = "修改文件存储记录")
   @ApiImplicitParams({
     @ApiImplicitParam(name="id", dataType="Long", paramType="form", required=true, value=""),
-    @ApiImplicitParam(name="app_id", dataType="Long", paramType="form", required=false, value="app Id"),
     @ApiImplicitParam(name="storage_site", dataType="String", paramType="form", required=false, value="存储站点"),
     @ApiImplicitParam(name="owner", dataType="String", paramType="form", required=false, value="拥有者"),
     @ApiImplicitParam(name="type", dataType="Integer", paramType="form", required=false, value="业务类型"),
@@ -64,7 +61,6 @@ public interface FileStorageApiDoc {
   @PostMapping(value = "/update")
   public ApiResult editFileStorage(
     @RequestParam(value="id", required=true) Long id,
-    @RequestParam(value="app_id", required=false) Long appId,
     @RequestParam(value="storage_site", required=false) String storageSite,
     @RequestParam(value="owner", required=false) String owner,
     @RequestParam(value="type", required=false) Integer type,
@@ -78,7 +74,6 @@ public interface FileStorageApiDoc {
 
   @ApiOperation(value = "根据条件查询文件存储记录",notes = "根据条件查询文件存储记录")
   @ApiImplicitParams({
-    @ApiImplicitParam(name="app_id", dataType="Long", paramType="form", required=false, value="app Id"),
     @ApiImplicitParam(name="storage_site", dataType="String", paramType="form", required=false, value="存储站点"),
     @ApiImplicitParam(name="owner", dataType="String", paramType="form", required=false, value="拥有者"),
     @ApiImplicitParam(name="type", dataType="Integer", paramType="form", required=false, value="业务类型"),
@@ -94,7 +89,6 @@ public interface FileStorageApiDoc {
   })
   @PostMapping(value = "/query")
   public ApiResult getFileStorageList(
-    @RequestParam(value="app_id", required=false) Long appId,
     @RequestParam(value="storage_site", required=false) String storageSite,
     @RequestParam(value="owner", required=false) String owner,
     @RequestParam(value="type", required=false) Integer type,

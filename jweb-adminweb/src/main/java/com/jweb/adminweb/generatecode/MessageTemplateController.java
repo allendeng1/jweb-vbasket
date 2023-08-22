@@ -14,7 +14,7 @@ import com.jweb.service.MessageTemplateService;
  *
  * @author 邓超
  *
- * 2023/08/21 17:20
+ * 2023/08/22 14:43
 */
 @RestController
 public class MessageTemplateController extends BaseController implements MessageTemplateApiDoc {
@@ -24,7 +24,6 @@ public class MessageTemplateController extends BaseController implements Message
 
   @Override
   public ApiResult addMessageTemplate(
-    Long appId,
     String code,
     String sentChannel,
     String templateCode,
@@ -35,7 +34,6 @@ public class MessageTemplateController extends BaseController implements Message
     ApiResult result = new ApiResult();
     try {
       MessageTemplate entity = new MessageTemplate();
-      entity.setAppId(appId);
       entity.setCode(code);
       entity.setSentChannel(sentChannel);
       entity.setTemplateCode(templateCode);
@@ -53,7 +51,6 @@ public class MessageTemplateController extends BaseController implements Message
   @Override
   public ApiResult editMessageTemplate(
     Long id,
-    Long appId,
     String code,
     String sentChannel,
     String templateCode,
@@ -65,7 +62,6 @@ public class MessageTemplateController extends BaseController implements Message
     try {
       MessageTemplate entity = new MessageTemplate();
       entity.setId(id);
-      entity.setAppId(appId);
       entity.setCode(code);
       entity.setSentChannel(sentChannel);
       entity.setTemplateCode(templateCode);
@@ -82,7 +78,6 @@ public class MessageTemplateController extends BaseController implements Message
 
   @Override
   public MessageTemplateResult getMessageTemplateList(
-    Long appId,
     String code,
     String sentChannel,
     String templateCode,
@@ -95,7 +90,6 @@ public class MessageTemplateController extends BaseController implements Message
     MessageTemplateResult result = new MessageTemplateResult();
     try {
       MessageTemplate entity = new MessageTemplate();
-      entity.setAppId(appId);
       entity.setCode(code);
       entity.setSentChannel(sentChannel);
       entity.setTemplateCode(templateCode);

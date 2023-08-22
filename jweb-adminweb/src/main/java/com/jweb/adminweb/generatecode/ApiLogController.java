@@ -14,7 +14,7 @@ import com.jweb.service.ApiLogService;
  *
  * @author 邓超
  *
- * 2023/08/21 17:20
+ * 2023/08/22 14:43
 */
 @RestController
 public class ApiLogController extends BaseController implements ApiLogApiDoc {
@@ -24,7 +24,6 @@ public class ApiLogController extends BaseController implements ApiLogApiDoc {
 
   @Override
   public ApiResult addApiLog(
-    Long appId,
     String serverContextPath,
     String ipAddress,
     Long userId,
@@ -43,7 +42,6 @@ public class ApiLogController extends BaseController implements ApiLogApiDoc {
     ApiResult result = new ApiResult();
     try {
       ApiLog entity = new ApiLog();
-      entity.setAppId(appId);
       entity.setServerContextPath(serverContextPath);
       entity.setIpAddress(ipAddress);
       entity.setUserId(userId);
@@ -69,7 +67,6 @@ public class ApiLogController extends BaseController implements ApiLogApiDoc {
   @Override
   public ApiResult editApiLog(
     Long id,
-    Long appId,
     String serverContextPath,
     String ipAddress,
     Long userId,
@@ -89,7 +86,6 @@ public class ApiLogController extends BaseController implements ApiLogApiDoc {
     try {
       ApiLog entity = new ApiLog();
       entity.setId(id);
-      entity.setAppId(appId);
       entity.setServerContextPath(serverContextPath);
       entity.setIpAddress(ipAddress);
       entity.setUserId(userId);
@@ -114,7 +110,6 @@ public class ApiLogController extends BaseController implements ApiLogApiDoc {
 
   @Override
   public ApiLogResult getApiLogList(
-    Long appId,
     String serverContextPath,
     String ipAddress,
     Long userId,
@@ -135,7 +130,6 @@ public class ApiLogController extends BaseController implements ApiLogApiDoc {
     ApiLogResult result = new ApiLogResult();
     try {
       ApiLog entity = new ApiLog();
-      entity.setAppId(appId);
       entity.setServerContextPath(serverContextPath);
       entity.setIpAddress(ipAddress);
       entity.setUserId(userId);
@@ -168,7 +162,7 @@ public class ApiLogController extends BaseController implements ApiLogApiDoc {
       ApiLog data = apiLogService.getById(id);
       result.setData(data);
     } catch (MyException e) {
-        result.bizFail(e);
+      result.bizFail(e);
     }
     return result;
   }
