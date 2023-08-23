@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.DigestUtils;
 
@@ -25,6 +26,7 @@ import lombok.extern.log4j.Log4j2;
 
 @Component
 @Log4j2
+@PropertySource(ignoreResourceNotFound = false, value = "classpath:msgconfig.properties")
 public class SonliangSmsProvider extends MessageProvider{
 	
 	@Value("${sonliang.sms.url:}")

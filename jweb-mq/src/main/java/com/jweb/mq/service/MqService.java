@@ -18,7 +18,7 @@ import com.jweb.mq.message.MessageType;
  *
  * 2022/6/4 12:24
  */
-public interface MqMessageService {
+public interface MqService {
 
 	MqMessage getById(long id) throws MqException;
 	

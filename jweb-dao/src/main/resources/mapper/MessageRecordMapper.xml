@@ -19,17 +19,18 @@
     <result column="reference" jdbcType="VARCHAR" property="reference" />
     <result column="callback_time" jdbcType="BIGINT" property="callbackTime" />
     <result column="callback_result" jdbcType="VARCHAR" property="callbackResult" />
+    <result column="is_read" jdbcType="BOOLEAN" property="isRead" />
     <result column="is_delete" jdbcType="BOOLEAN" property="isDelete" />
     <result column="ctdate" jdbcType="BIGINT" property="ctdate" />
     <result column="mddate" jdbcType="BIGINT" property="mddate" />
   </resultMap>
 
   <sql id="MessageRecord.clounms">
-    id,code,sent_channel,status,sender,receiver,sent_way,timing_time,content,sent_time,sent_result,template_code,reference,callback_time,callback_result,is_delete,ctdate,mddate
+    id,code,sent_channel,status,sender,receiver,sent_way,timing_time,content,sent_time,sent_result,template_code,reference,callback_time,callback_result,is_read,is_delete,ctdate,mddate
   </sql>
 
   <sql id="MessageRecord.noidclounms">
-    code,sent_channel,status,sender,receiver,sent_way,timing_time,content,sent_time,sent_result,template_code,reference,callback_time,callback_result,is_delete,ctdate,mddate
+    code,sent_channel,status,sender,receiver,sent_way,timing_time,content,sent_time,sent_result,template_code,reference,callback_time,callback_result,is_read,is_delete,ctdate,mddate
   </sql>
 
   <sql id="MessageRecord.where">
@@ -78,6 +79,9 @@
     <if test="callbackResult != null">
       and callback_result = #{callbackResult}
     </if>
+    <if test="isRead != null">
+      and is_read = #{isRead}
+    </if>
     <if test="isDelete != null">
       and is_delete = #{isDelete}
     </if>
@@ -107,7 +111,7 @@
   </sql>
 
   <insert id="MessageRecord.insert" parameterType="com.jweb.dao.entity.MessageRecord" useGeneratedKeys="true" keyProperty="id">
-    insert into message_record (<include refid="MessageRecord.noidclounms" />) values (#{code},#{sentChannel},#{status},#{sender},#{receiver},#{sentWay},#{timingTime},#{content},#{sentTime},#{sentResult},#{templateCode},#{reference},#{callbackTime},#{callbackResult},#{isDelete},#{ctdate},#{mddate})
+    insert into message_record (<include refid="MessageRecord.noidclounms" />) values (#{code},#{sentChannel},#{status},#{sender},#{receiver},#{sentWay},#{timingTime},#{content},#{sentTime},#{sentResult},#{templateCode},#{reference},#{callbackTime},#{callbackResult},#{isRead},#{isDelete},#{ctdate},#{mddate})
   </insert>
 
   <select id="MessageRecord.selectIds" resultType="Long" parameterType="com.jweb.dao.entity.MessageRecord">
@@ -175,6 +179,9 @@
       </if>
       <if test="callbackResult != null">
         callback_result = #{callbackResult},
+      </if>
+      <if test="isRead != null">
+        is_read = #{isRead},
       </if>
       <if test="isDelete != null">
         is_delete = #{isDelete},

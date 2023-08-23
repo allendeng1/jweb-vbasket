@@ -191,6 +191,7 @@ public class MessageServiceImpl extends DataUtil implements MessageService{
 		mr.setSentChannel(template.getSentChannel());
 		mr.setSentWay(sentWay.getValue());
 		mr.setStatus(DatabaseConstant.MessageSentStatus.WAIT_SENT.getValue());
+		mr.setIsRead(false);
 		if(isNotNull(timingTime)) {
 			mr.setTimingTime(Long.valueOf(DateTimeUtil.timeToString(timingTime, DateTimeUtil.Format.YYYYMMDDHHMMSS_4)));
 		}

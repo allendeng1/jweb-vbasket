@@ -35,7 +35,7 @@ public class LocalFileStorage extends FileStorageProvider {
 	}
 
 	@Override
-	protected String writeToDisk(MultipartFile file, long saasId, FileBizType type, String owner, String filePath, String fileName, String domain) throws MyException {
+	protected String writeToDisk(MultipartFile file, FileBizType type, String owner, String filePath, String fileName, String domain) throws MyException {
 		
 		try {
 			File dest = new File(rootPath+SEPARATOR+filePath);

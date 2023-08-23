@@ -34,7 +34,9 @@ public enum MessageChannel {
 	/**雪融云市场营销短信**/
 	XUERONG_SMS_MARKETING,
 	/**颂量短信**/
-	SONLIANG_SMS
+	SONLIANG_SMS,
+	/**EMAIL**/
+	EMAIL
 	;
 
 	public static List<KeyValueVo> getSelectOptions(){

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author 邓超
  *
- * 2023/08/22 14:43
+ * 2023/08/22 18:02
 */
 @RequestMapping(value="sysdictionary")
 @Api(tags="系统字典管理接口")

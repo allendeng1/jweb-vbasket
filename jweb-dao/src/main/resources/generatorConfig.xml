@@ -28,7 +28,8 @@
     </datasource>
     
     <!--设置表名-->
-    <!--<table schema="jweb" tableName="api_log"></table>
+    <!---->
+    <table schema="jweb" tableName="api_log"></table>
     <table schema="jweb" tableName="file_storage"></table>
     <table schema="jweb" tableName="message_template"></table>
     <table schema="jweb" tableName="message_record"></table>
@@ -36,7 +37,7 @@
     <table schema="jweb" tableName="sys_dictionary"></table>
     <table schema="jweb" tableName="job_rule"></table>
     <table schema="jweb" tableName="job_run_log"></table>
-    <table schema="jweb" tableName="job_update_log"></table>-->
+    <table schema="jweb" tableName="job_update_log"></table>
     <table schema="jweb" tableName="mq_message"></table>
     <table schema="jweb" tableName="mq_message_log"></table>
 </generatorConfiguration>

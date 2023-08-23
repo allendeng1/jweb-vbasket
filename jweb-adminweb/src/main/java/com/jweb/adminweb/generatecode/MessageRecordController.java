@@ -14,7 +14,7 @@ import com.jweb.service.MessageRecordService;
  *
  * @author 邓超
  *
- * 2023/08/22 14:43
+ * 2023/08/22 18:02
 */
 @RestController
 public class MessageRecordController extends BaseController implements MessageRecordApiDoc {
@@ -38,6 +38,7 @@ public class MessageRecordController extends BaseController implements MessageRe
     String reference,
     Long callbackTime,
     String callbackResult,
+    Boolean isRead,
     Boolean isDelete,
     Long ctdate,
     Long mddate) {
@@ -58,6 +59,7 @@ public class MessageRecordController extends BaseController implements MessageRe
       entity.setReference(reference);
       entity.setCallbackTime(callbackTime);
       entity.setCallbackResult(callbackResult);
+      entity.setIsRead(isRead);
       entity.setIsDelete(isDelete);
       entity.setCtdate(ctdate);
       entity.setMddate(mddate);
@@ -85,6 +87,7 @@ public class MessageRecordController extends BaseController implements MessageRe
     String reference,
     Long callbackTime,
     String callbackResult,
+    Boolean isRead,
     Boolean isDelete,
     Long ctdate,
     Long mddate) {
@@ -106,6 +109,7 @@ public class MessageRecordController extends BaseController implements MessageRe
       entity.setReference(reference);
       entity.setCallbackTime(callbackTime);
       entity.setCallbackResult(callbackResult);
+      entity.setIsRead(isRead);
       entity.setIsDelete(isDelete);
       entity.setCtdate(ctdate);
       entity.setMddate(mddate);
@@ -132,6 +136,7 @@ public class MessageRecordController extends BaseController implements MessageRe
     String reference,
     Long callbackTime,
     String callbackResult,
+    Boolean isRead,
     Boolean isDelete,
     Long ctdate,
     Long mddate,
@@ -154,6 +159,7 @@ public class MessageRecordController extends BaseController implements MessageRe
       entity.setReference(reference);
       entity.setCallbackTime(callbackTime);
       entity.setCallbackResult(callbackResult);
+      entity.setIsRead(isRead);
       entity.setIsDelete(isDelete);
       entity.setCtdate(ctdate);
       entity.setMddate(mddate);

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSONObject;
@@ -14,6 +15,7 @@ import com.jweb.common.util.MobileNumberUtil;
 import com.jweb.message.base.MessageChannel;
 
 @Component
+@PropertySource(ignoreResourceNotFound = false, value = "classpath:msgconfig.properties")
 public class ChuanglanSmsVerifyCodeProvider extends ChuanglanSmsProvider {
 
 	@Value("${chuanglan.sms.verifycode.url:}")

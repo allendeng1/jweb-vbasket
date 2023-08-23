@@ -14,7 +14,7 @@ import com.jweb.service.MqMessageService;
  *
  * @author 邓超
  *
- * 2023/08/22 15:26
+ * 2023/08/22 18:02
 */
 @RestController
 public class MqMessageController extends BaseController implements MqMessageApiDoc {

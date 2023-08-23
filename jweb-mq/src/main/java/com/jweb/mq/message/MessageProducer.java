@@ -8,7 +8,7 @@ import com.jweb.common.util.DateTimeUtil;
 import com.jweb.dao.constant.DatabaseConstant.MqMsgChannel;
 import com.jweb.dao.constant.DatabaseConstant.MqMsgExcuteMethod;
 import com.jweb.dao.entity.MqMessage;
-import com.jweb.mq.service.MqMessageService;
+import com.jweb.mq.service.MqService;
 
 import lombok.extern.slf4j.Slf4j;
 /**
@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 public abstract class MessageProducer {
 	
 	@Autowired
-	private MqMessageService mqMessageService;
+	private MqService mqService;
 	
 	
 	public boolean publishMessage(MessageQueue queue, MessageType type, String content) throws MqException{
@@ -30,14 +30,14 @@ public abstract class MessageProducer {
 		log.info("Sent type {} message {} to {} queue {}", type.getName(), content, getChannel().getValue(), queue.getName());
 		
 		if(queue.isIndexDocQueue()) {//搜索引擎索引同步队列，同一索引类型去重
-			boolean isExist = mqMessageService.getIndexDocSyncMessageIsExist(content);
+			boolean isExist = mqService.getIndexDocSyncMessageIsExist(content);
 			if(isExist) {
 				log.info("Index doc sync content[{}] is exist", content);
 				return true;
 			}
 		}
 		
-		MqMessage message = mqMessageService.createMqMessage(getChannel(), queue, type, content);
+		MqMessage message = mqService.createMqMessage(getChannel(), queue, type, content);
 		long startTime = DateTimeUtil.nowTime();
 		String messageBody = "{\"id\":"+message.getId()+",\"mt\":\""+type.getName()+"\"}";
 		String result = "success";
@@ -48,7 +48,7 @@ public abstract class MessageProducer {
 			result = e.getMessage();
 		}
 		long endTime = DateTimeUtil.nowTime();
-		mqMessageService.publishMqMessage(message.getId(), MqMsgExcuteMethod.AUTO, startTime, endTime, result);
+		mqService.publishMqMessage(message.getId(), MqMsgExcuteMethod.AUTO, startTime, endTime, result);
 		return result.equals("success");
 	}
 	public boolean publishMessage(long msgId, MessageQueue queue, MessageType type) throws MqException{
@@ -65,14 +65,14 @@ public abstract class MessageProducer {
 			result = e.getMessage();
 		}
 		long endTime = DateTimeUtil.nowTime();
-		mqMessageService.publishMqMessage(msgId, MqMsgExcuteMethod.MANUAL, startTime, endTime, result);
+		mqService.publishMqMessage(msgId, MqMsgExcuteMethod.MANUAL, startTime, endTime, result);
 		return result.equals("success");
 	}
 	public boolean publishMessage(MessageTopic topic,  String content) throws MqException{
 		
 		log.info("Sent topic message {} to {} queue {}", content, getChannel().getValue(), topic.getName());
 		
-		MqMessage message = mqMessageService.createMqMessage(getChannel(), topic, content);
+		MqMessage message = mqService.createMqMessage(getChannel(), topic, content);
 		long startTime = DateTimeUtil.nowTime();
 		String messageBody = "{\"id\":"+message.getId()+"}";
 		String result = "success";
@@ -83,7 +83,7 @@ public abstract class MessageProducer {
 			result = e.getMessage();
 		}
 		long endTime = DateTimeUtil.nowTime();
-		mqMessageService.publishMqMessage(message.getId(), MqMsgExcuteMethod.AUTO, startTime, endTime, result);
+		mqService.publishMqMessage(message.getId(), MqMsgExcuteMethod.AUTO, startTime, endTime, result);
 		return result.equals("success");
 	}
 	public boolean publishMessage(long msgId, MessageTopic topic) throws MqException{
@@ -99,7 +99,7 @@ public abstract class MessageProducer {
 			result = e.getMessage();
 		}
 		long endTime = DateTimeUtil.nowTime();
-		mqMessageService.publishMqMessage(msgId, MqMsgExcuteMethod.MANUAL, startTime, endTime, result);
+		mqService.publishMqMessage(msgId, MqMsgExcuteMethod.MANUAL, startTime, endTime, result);
 		return result.equals("success");
 	}
 	protected abstract void sentToMqServer(MessageQueue queue, String message)throws Exception;

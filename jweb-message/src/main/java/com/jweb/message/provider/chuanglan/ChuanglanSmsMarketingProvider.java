@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSONObject;
@@ -12,6 +13,7 @@ import com.jweb.common.util.MobileNumberUtil;
 import com.jweb.message.base.MessageChannel;
 
 @Component
+@PropertySource(ignoreResourceNotFound = false, value = "classpath:msgconfig.properties")
 public class ChuanglanSmsMarketingProvider extends ChuanglanSmsProvider {
 
 	@Value("${chuanglan.sms.marketing.url:}")

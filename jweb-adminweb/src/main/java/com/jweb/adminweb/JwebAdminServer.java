@@ -5,10 +5,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 @SpringBootApplication
+@EnableScheduling
 @ComponentScan(value= {"com.jweb.dao.flyway","com.jweb.*"}, excludeFilters = {
 	@ComponentScan.Filter(type = FilterType.REGEX, pattern = {
             //排除自动生成的controller

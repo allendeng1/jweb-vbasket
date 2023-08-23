@@ -30,7 +30,7 @@ import com.jweb.mq.message.MessageType;
  * 2022/6/4 12:24
  */
 @Service
-public class MqMessageServiceImpl extends DataUtil implements MqMessageService {
+public class MqServiceImpl extends DataUtil implements MqService {
 	
 	@Autowired
 	private MqMessageDao mqMessageDao;

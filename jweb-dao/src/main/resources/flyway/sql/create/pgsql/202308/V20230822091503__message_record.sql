@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS message_record  (
   reference varchar(50),
   callback_time bigint,
   callback_result text,
+  is_read boolean NOT NULL DEFAULT false,
   is_delete boolean NOT NULL DEFAULT false ,
   ctdate bigint NOT NULL,
   mddate bigint NOT NULL
@@ -35,6 +36,7 @@ COMMENT ON COLUMN message_record.template_code IS '第三方平台模板编号';
 COMMENT ON COLUMN message_record.reference IS '第三方消息标识';
 COMMENT ON COLUMN message_record.callback_time IS '回调时间';
 COMMENT ON COLUMN message_record.callback_result IS '回调结果';
+COMMENT ON COLUMN message_record.is_read IS '是否已读';
 
 CREATE SEQUENCE if not exists message_record_id_seq
 START WITH 1

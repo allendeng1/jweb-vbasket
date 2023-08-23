@@ -1,5 +1,7 @@
 package com.jweb.message.base;
 
+import java.io.File;
+
 import lombok.Data;
 
 /**
@@ -25,7 +27,10 @@ public class MessageBody {
 	 * 消息接收者
 	 */
 	private String recipient;
-	
+	/**
+	 * 消息主题
+	 */
+	private String subject;
 	/**
 	 * 消息内容
 	 */
@@ -34,5 +39,10 @@ public class MessageBody {
 	 * 第三方平台的消息模板ID
 	 */
 	private String templateId;
+	
+	/**
+	 * 消息附件
+	 */
+	private File[] files;
 
 }

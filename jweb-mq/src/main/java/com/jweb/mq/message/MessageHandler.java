@@ -12,7 +12,7 @@ import com.jweb.common.util.DateTimeUtil;
 import com.jweb.dao.component.RedisComponent;
 import com.jweb.dao.constant.DatabaseConstant.MqMsgExcuteMethod;
 import com.jweb.dao.entity.MqMessage;
-import com.jweb.mq.service.MqMessageService;
+import com.jweb.mq.service.MqService;
 
 import lombok.extern.slf4j.Slf4j;
 /**
@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 public abstract class MessageHandler {
 
 	@Autowired
-	private MqMessageService mqMessageService;
+	private MqService mqService;
 	@Autowired
 	private RedisComponent redisComponent;
 	
@@ -35,7 +35,7 @@ public abstract class MessageHandler {
 		long startTime = DateTimeUtil.nowTime();
 		MqMessage message = null;
 		try {
-			message = mqMessageService.getById(id);
+			message = mqService.getById(id);
 		} catch (MqException e) {
 			log.error("", e);
 			return;
@@ -72,7 +72,7 @@ public abstract class MessageHandler {
 		}
 		long endTime = DateTimeUtil.nowTime();
 		try {
-			mqMessageService.consumeMqMessage(id, method, getExcuteHandler(), startTime, endTime, result);
+			mqService.consumeMqMessage(id, method, getExcuteHandler(), startTime, endTime, result);
 		} catch (MqException e) {
 			log.error("", e);
 		}

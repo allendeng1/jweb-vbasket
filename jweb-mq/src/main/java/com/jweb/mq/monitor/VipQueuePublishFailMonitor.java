@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import com.jweb.common.exception.MqException;
 import com.jweb.dao.entity.MqMessage;
 import com.jweb.mq.message.QueueName;
-import com.jweb.mq.service.MqMessageService;
+import com.jweb.mq.service.MqService;
 
 import lombok.extern.slf4j.Slf4j;
 /**
@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class VipQueuePublishFailMonitor {
 
 	@Autowired
-	private MqMessageService mqMessageService;
+	private MqService mqService;
 
 	private MqMessage queue = null;
 	
@@ -34,7 +34,7 @@ public class VipQueuePublishFailMonitor {
 			queue.setIsDelete(false);
 		}
 		try {
-			mqMessageService.queuePublishFailMonitor(queue);
+			mqService.queuePublishFailMonitor(queue);
 		} catch (MqException e) {
 			log.error("", e);
 		}

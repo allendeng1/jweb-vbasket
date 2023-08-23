@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiModelProperty;
  *
  * @author 邓超
  *
- * 2023/08/22 14:43
+ * 2023/08/22 18:02
 */
 @Data
 @ToString(callSuper = true)
@@ -96,6 +96,11 @@ public class MessageRecord extends BaseEntity {
 	@Column(name = "callback_result")
 	@ApiModelProperty(value="回调结果", dataType="String")
 	private String callbackResult;
+
+	/***是否已读*/
+	@Column(name = "is_read")
+	@ApiModelProperty(value="是否已读", dataType="Boolean")
+	private Boolean isRead;
 
 	/****/
 	@Column(name = "is_delete")

@@ -7,6 +7,7 @@
     <artifactId>jweb-vbasket</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
+  
   <artifactId>jweb-adminweb</artifactId>
   <name>jweb-adminweb</name>
   <url>http://maven.apache.org</url>
@@ -48,20 +49,23 @@
         	<artifactId>fastjson</artifactId>
         </dependency>
   </dependencies>
+
    <build>
-   	<resources>
-  		<resource>
-  			<directory>src/main/java</directory>
-  			<includes>
-  				<include>**/*.*</include>
-  			</includes>
-  		</resource>
-  		<resource>
-  			<directory>src/main/resources</directory>
-  			<includes>
-  				<include>**/*.*</include>
-  			</includes>
-  		</resource>
-  	</resources>
-  </build>
+	   	<resources>
+	  		<resource>
+	  			<directory>src/main/java</directory>
+	  			<includes>
+	  				<include>**/*.*</include>
+	  			</includes>
+	  			<filtering>false</filtering>
+	  		</resource>
+	  		<resource>
+	  			<directory>src/main/resources</directory>
+	  			<includes>
+	  				<include>**/*.*</include>
+	  			</includes>
+	  			<filtering>false</filtering>
+	  		</resource>
+	  	</resources>
+  	</build>
 </project>

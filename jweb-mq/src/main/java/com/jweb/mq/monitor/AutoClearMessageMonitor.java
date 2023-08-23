@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.jweb.common.exception.MqException;
 import com.jweb.common.util.DateTimeUtil;
-import com.jweb.mq.service.MqMessageService;
+import com.jweb.mq.service.MqService;
 
 import lombok.extern.slf4j.Slf4j;
 /**
@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @ConditionalOnExpression("${mq.auto-clear.enabled:false}")
 public class AutoClearMessageMonitor {
 	@Autowired
-	private MqMessageService mqMessageService;
+	private MqService mqService;
 	
 	@Value("${mq.auto-clear.difftime:7776000000}")
 	private long difftime;
@@ -31,7 +31,7 @@ public class AutoClearMessageMonitor {
 	public void run(){
 		long clearEndTime = DateTimeUtil.nowTime() - difftime;
 		try {
-			mqMessageService.autoClearMessage(clearEndTime);
+			mqService.autoClearMessage(clearEndTime);
 		} catch (MqException e) {
 			log.error("", e);
 		}

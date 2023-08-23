@@ -14,7 +14,7 @@ import com.jweb.service.JobUpdateLogService;
  *
  * @author 邓超
  *
- * 2023/08/22 14:43
+ * 2023/08/22 18:02
 */
 @RestController
 public class JobUpdateLogController extends BaseController implements JobUpdateLogApiDoc {

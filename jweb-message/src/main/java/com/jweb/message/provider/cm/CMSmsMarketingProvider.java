@@ -1,16 +1,18 @@
 package com.jweb.message.provider.cm;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import com.jweb.message.base.MessageChannel;
 
 @Component
+@PropertySource(ignoreResourceNotFound = false, value = "classpath:msgconfig.properties")
 public class CMSmsMarketingProvider extends CMSmsProvider {
 
 	@Value("${cm.sms.url:}")
 	private String url;
-	@Value("${m.sms.marketing.channel.accessKey:}")
+	@Value("${cm.sms.marketing.channel.accessKey:}")
 	private String accessKey;
 	
 	@Override

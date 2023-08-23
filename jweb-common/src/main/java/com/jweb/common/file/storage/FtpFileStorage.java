@@ -50,7 +50,7 @@ public class FtpFileStorage extends FileStorageProvider{
 	}
 	
 	@Override
-	protected String writeToDisk(MultipartFile file, long saasId, FileBizType type, String owner, String filePath,
+	protected String writeToDisk(MultipartFile file, FileBizType type, String owner, String filePath,
 			String fileName, String domain) throws MyException {
 		
 		createDir(filePath);

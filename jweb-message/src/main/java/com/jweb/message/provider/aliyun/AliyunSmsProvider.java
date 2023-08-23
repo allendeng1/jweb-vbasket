@@ -3,6 +3,7 @@ package com.jweb.message.provider.aliyun;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSONArray;
@@ -22,6 +23,7 @@ import com.jweb.message.base.MessageResult;
 import lombok.Data;
 
 @Component
+@PropertySource(ignoreResourceNotFound = false, value = "classpath:msgconfig.properties")
 public class AliyunSmsProvider extends MessageProvider{
 	
 	@Value("${alyun.sms.url:}")

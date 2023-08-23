@@ -22,7 +22,7 @@ import com.jweb.mq.message.MessageQueue;
 import com.jweb.mq.message.MessageRouter;
 import com.jweb.mq.message.MessageTopic;
 import com.jweb.mq.message.MessageType;
-import com.jweb.mq.service.MqMessageService;
+import com.jweb.mq.service.MqService;
 
 import lombok.extern.slf4j.Slf4j;
 /**
@@ -38,7 +38,7 @@ public class MqController extends BaseController implements MqApiDoc{
 	@Autowired
 	private MessageRouter messageRouter;
 	@Autowired
-	private MqMessageService mqMessageService;
+	private MqService mqService;
 
 	@Override
 	public ApiResult publishQueueMessage(MessageType bizType, String content, String label) {
@@ -73,7 +73,7 @@ public class MqController extends BaseController implements MqApiDoc{
 		ApiResult result = new ApiResult();
 
 		try {
-			mqMessageService.publishRetryMessage(msgIds);
+			mqService.publishRetryMessage(msgIds);
 		} catch (MqException e) {
 			log.error(e.getMessage(), e);
 			result.bizFail(e);
@@ -87,7 +87,7 @@ public class MqController extends BaseController implements MqApiDoc{
 		ApiResult result = new ApiResult();
 
 		try {
-			mqMessageService.deleteMessage(msgIds);
+			mqService.deleteMessage(msgIds);
 		} catch (MqException e) {
 			log.error(e.getMessage(), e);
 			result.bizFail(e);
@@ -128,7 +128,7 @@ public class MqController extends BaseController implements MqApiDoc{
 		}
 		
 		try {
-			PageResult<MqMessage> pageResult = mqMessageService.getMqMessageList(query);
+			PageResult<MqMessage> pageResult = mqService.getMqMessageList(query);
 			result.setData(pageResult);
 		} catch (MqException e) {
 			log.error(e.getMessage(), e);
@@ -142,7 +142,7 @@ public class MqController extends BaseController implements MqApiDoc{
 	public MqMessageLogResult messageLogList(Long messageId) {
 		MqMessageLogResult result = new MqMessageLogResult();
 		try {
-			List<MqMessageLog> msglogs = mqMessageService.getMqMessageLog(messageId);
+			List<MqMessageLog> msglogs = mqService.getMqMessageLog(messageId);
 			PageResult<MqMessageLog> pageResult = new PageResult<MqMessageLog>();
 			pageResult.setEntitys(msglogs);
 			if(isNotNull(msglogs)) {

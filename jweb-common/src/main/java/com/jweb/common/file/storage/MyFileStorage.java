@@ -40,10 +40,9 @@ public class MyFileStorage extends FileStorageProvider{
 	}
 
 	@Override
-	protected String writeToDisk(MultipartFile file, long saasId, FileBizType type, String owner, String filePath, String fileName, String domain) throws MyException {
+	protected String writeToDisk(MultipartFile file, FileBizType type, String owner, String filePath, String fileName, String domain) throws MyException {
 		HttpResult httpResult = HttpUtil.builder().url(spliceUrl(this.domain, uploadUrl))
 				.addParam("accessKey", accessKey)
-				.addParam("saasId", saasId+"")
 				.addParam("owner", owner)
 				.addParam("type", type.name())
 				.multipartPost(file).sync();

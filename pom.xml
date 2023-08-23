@@ -14,6 +14,7 @@
     <module>jweb-schedule</module>
     <module>jweb-message</module>
     <module>jweb-mq</module>
+    <module>jweb-filestorage</module>
   </modules>
   
   <parent>
@@ -44,6 +45,8 @@
   	<jwttoken.version>0.7.0</jwttoken.version>
   	<dom4j.version>2.1.1</dom4j.version>
   	<aliyun-oss.version>3.10.2</aliyun-oss.version>
+  	<email.version>1.6.2</email.version>
+  	
   </properties>
   <dependencyManagement>
   	<dependencies>
@@ -157,6 +160,12 @@
           <artifactId>jjwt</artifactId>
           <version>${jwttoken.version}</version>
         </dependency>
+        <dependency>
+		    <groupId>com.sun.mail</groupId>
+		    <artifactId>javax.mail</artifactId>
+		    <version>${email.version}</version>
+		</dependency>
+
         <!-- https://mvnrepository.com/artifact/org.dom4j/dom4j -->
 		<dependency>
 		    <groupId>org.dom4j</groupId>

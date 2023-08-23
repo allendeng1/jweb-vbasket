@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author 邓超
  *
- * 2023/08/22 14:43
+ * 2023/08/22 18:02
 */
 @RequestMapping(value="messagerecord")
 @Api(tags="消息发送记录管理接口")
@@ -34,6 +34,7 @@ public interface MessageRecordApiDoc {
     @ApiImplicitParam(name="reference", dataType="String", paramType="form", required=false, value="第三方消息标识"),
     @ApiImplicitParam(name="callback_time", dataType="Long", paramType="form", required=false, value="回调时间"),
     @ApiImplicitParam(name="callback_result", dataType="String", paramType="form", required=false, value="回调结果"),
+    @ApiImplicitParam(name="is_read", dataType="Boolean", paramType="form", required=true, value="是否已读"),
     @ApiImplicitParam(name="is_delete", dataType="Boolean", paramType="form", required=true, value=""),
     @ApiImplicitParam(name="ctdate", dataType="Long", paramType="form", required=true, value=""),
     @ApiImplicitParam(name="mddate", dataType="Long", paramType="form", required=true, value="")
@@ -54,6 +55,7 @@ public interface MessageRecordApiDoc {
     @RequestParam(value="reference", required=false) String reference,
     @RequestParam(value="callback_time", required=false) Long callbackTime,
     @RequestParam(value="callback_result", required=false) String callbackResult,
+    @RequestParam(value="is_read", required=true) Boolean isRead,
     @RequestParam(value="is_delete", required=true) Boolean isDelete,
     @RequestParam(value="ctdate", required=true) Long ctdate,
     @RequestParam(value="mddate", required=true) Long mddate);
@@ -75,6 +77,7 @@ public interface MessageRecordApiDoc {
     @ApiImplicitParam(name="reference", dataType="String", paramType="form", required=false, value="第三方消息标识"),
     @ApiImplicitParam(name="callback_time", dataType="Long", paramType="form", required=false, value="回调时间"),
     @ApiImplicitParam(name="callback_result", dataType="String", paramType="form", required=false, value="回调结果"),
+    @ApiImplicitParam(name="is_read", dataType="Boolean", paramType="form", required=false, value="是否已读"),
     @ApiImplicitParam(name="is_delete", dataType="Boolean", paramType="form", required=false, value=""),
     @ApiImplicitParam(name="ctdate", dataType="Long", paramType="form", required=false, value=""),
     @ApiImplicitParam(name="mddate", dataType="Long", paramType="form", required=false, value="")
@@ -96,6 +99,7 @@ public interface MessageRecordApiDoc {
     @RequestParam(value="reference", required=false) String reference,
     @RequestParam(value="callback_time", required=false) Long callbackTime,
     @RequestParam(value="callback_result", required=false) String callbackResult,
+    @RequestParam(value="is_read", required=false) Boolean isRead,
     @RequestParam(value="is_delete", required=false) Boolean isDelete,
     @RequestParam(value="ctdate", required=false) Long ctdate,
     @RequestParam(value="mddate", required=false) Long mddate);
@@ -116,6 +120,7 @@ public interface MessageRecordApiDoc {
     @ApiImplicitParam(name="reference", dataType="String", paramType="form", required=false, value="第三方消息标识"),
     @ApiImplicitParam(name="callback_time", dataType="Long", paramType="form", required=false, value="回调时间"),
     @ApiImplicitParam(name="callback_result", dataType="String", paramType="form", required=false, value="回调结果"),
+    @ApiImplicitParam(name="is_read", dataType="Boolean", paramType="form", required=false, value="是否已读"),
     @ApiImplicitParam(name="is_delete", dataType="Boolean", paramType="form", required=false, value=""),
     @ApiImplicitParam(name="ctdate", dataType="Long", paramType="form", required=false, value=""),
     @ApiImplicitParam(name="mddate", dataType="Long", paramType="form", required=false, value=""),
@@ -138,6 +143,7 @@ public interface MessageRecordApiDoc {
     @RequestParam(value="reference", required=false) String reference,
     @RequestParam(value="callback_time", required=false) Long callbackTime,
     @RequestParam(value="callback_result", required=false) String callbackResult,
+    @RequestParam(value="is_read", required=false) Boolean isRead,
     @RequestParam(value="is_delete", required=false) Boolean isDelete,
     @RequestParam(value="ctdate", required=false) Long ctdate,
     @RequestParam(value="mddate", required=false) Long mddate,

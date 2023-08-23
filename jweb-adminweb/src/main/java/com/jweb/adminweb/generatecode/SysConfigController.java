@@ -14,7 +14,7 @@ import com.jweb.service.SysConfigService;
  *
  * @author 邓超
  *
- * 2023/08/22 14:43
+ * 2023/08/22 18:02
 */
 @RestController
 public class SysConfigController extends BaseController implements SysConfigApiDoc {

@@ -28,6 +28,8 @@ spring:
 #文件存储服务：LOCAL-本地存储， ALIYUNOSS-阿里云OSS，MYSITE-自建存储服务，FTP-ftp存储服务
 file:
   storage:
-    site: LOCAL
+    site: ALIYUNOSS
 
-  
+#是否开启邮件服务
+email:
+  enable: true
