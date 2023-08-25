@@ -28,8 +28,6 @@ public class ApiResult implements Serializable{
 	private String msg="成功";
 	@ApiModelProperty(value="数据")
 	private Object data;
-	@ApiModelProperty(value="总条数")
-	private Integer count;
 
 	public Integer getErrcode() {
 		return errcode;

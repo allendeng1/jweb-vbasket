@@ -25,6 +25,7 @@ import com.jweb.schedule.controller.vo.JobUpdateLogResult;
 import com.jweb.schedule.handler.ScheduledControlCenter;
 import com.jweb.schedule.handler.executor.temporary.TemporaryJobType;
 import com.jweb.schedule.service.JobService;
+import com.jweb.watchdog.aspect.resubmit.NoResubmit;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,6 +40,7 @@ public class JobController extends BaseController implements JobApiDoc{
 	@Autowired
 	private JobClusterManager jobClusterManager;
 	
+	@NoResubmit(timeInterval = 3, submittable = true)
 	@Override
 	public ApiResult addFixedTask(String taskName, String taskCron, String handlerName, String remark) {
 		ApiResult result = new ApiResult();
@@ -51,6 +53,7 @@ public class JobController extends BaseController implements JobApiDoc{
 		return result;
 	}
 
+	@NoResubmit(timeInterval = 3, submittable = true)
 	@Override
 	public ApiResult addTemporaryTask(TemporaryJobType type, String timingTime, String content) {
 		ApiResult result = new ApiResult();
@@ -62,6 +65,7 @@ public class JobController extends BaseController implements JobApiDoc{
 		}
 		return result;
 	}
+	@NoResubmit(timeInterval = 3, submittable = true)
 	@Override
 	public ApiResult updateTask(Long taskId, String taskCron, String handlerName, String remark) {
 		ApiResult result = new ApiResult();
@@ -73,7 +77,7 @@ public class JobController extends BaseController implements JobApiDoc{
 		}
 		return result;
 	}
-	
+	@NoResubmit(timeInterval = 3, submittable = true)
 	@Override
 	public ApiResult updateTaskUse(Long taskId, JobStatus jobStatus) {
 		ApiResult result = new ApiResult();
@@ -86,6 +90,7 @@ public class JobController extends BaseController implements JobApiDoc{
 		return result;
 	}
 
+	@NoResubmit(timeInterval = 3, submittable = true)
 	@Override
 	public ApiResult updateTaskRun(Long taskId, JobRunStatus jobRunStatus) {
 		ApiResult result = new ApiResult();
@@ -108,6 +113,7 @@ public class JobController extends BaseController implements JobApiDoc{
 		return result;
 	}
 
+	@NoResubmit(timeInterval = 3, submittable = true)
 	@Override
 	public JobRuleResult getJobTaskList(String taskNo, String taskNameLike, DatabaseConstant.JobType JobType, DatabaseConstant.JobStatus jobStatus, DatabaseConstant.JobRunStatus runStatus,
 			Integer page, Integer pageSize) {
@@ -135,6 +141,7 @@ public class JobController extends BaseController implements JobApiDoc{
 		return result;
 	}
 
+	@NoResubmit(timeInterval = 3, submittable = true)
 	@Override
 	public JobUpdateLogResult getJobUpdateLogList(Long taskId, JobUpdateType type, Integer page, Integer pageSize) {
 		JobUpdateLogResult result = new JobUpdateLogResult();
@@ -155,6 +162,7 @@ public class JobController extends BaseController implements JobApiDoc{
 		return result;
 	}
 
+	@NoResubmit(timeInterval = 3, submittable = true)
 	@Override
 	public JobRunLogResult getJobRunLogList(Long taskId, JobRunLogStatus status, JobRunResult runResult, Integer page,
 			Integer pageSize) {

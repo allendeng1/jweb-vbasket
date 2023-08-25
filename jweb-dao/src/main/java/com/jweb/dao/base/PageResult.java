@@ -24,6 +24,15 @@ public class PageResult<T> implements Serializable{
 	@ApiModelProperty(value="总条数", dataType="int")
 	private int totalCount;
 	
+	@ApiModelProperty(value="总页码", dataType="int")
+	private int totalPage;
+	
+	@ApiModelProperty(value="当前页码", dataType="int")
+	private int curPage;
+
+	@ApiModelProperty(value="当前每页条数", dataType="int")
+	private int curLimit;
+	
 	@ApiModelProperty(value="数据", dataType="List")
 	private List<T> entitys;
 

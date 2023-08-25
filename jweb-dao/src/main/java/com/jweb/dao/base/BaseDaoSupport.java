@@ -211,12 +211,20 @@ public abstract class BaseDaoSupport<T extends BaseEntity> implements BaseDao<T>
 	@Override
 	public PageResult<T> selectPageResultByExample(BaseEntity query) {
 		PageResult<T> result = new PageResult<T>();
+		result.setCurLimit(query.getLimit());
+		result.setCurPage((query.getOffset()+query.getLimit())/query.getLimit());
+		
 		int totalCount = selectCountByExample(query);
 		if(totalCount == 0){
 			return result;
 		}
 		List<T> entitys = selectByExample(query);
 		result.setTotalCount(totalCount);
+		int totalPage = totalCount / query.getLimit();
+		if(totalCount % query.getLimit() > 0) {
+			totalPage += 1;
+		}
+		result.setTotalPage(totalPage);
 		result.setEntitys(entitys);
 		return result;
 	}

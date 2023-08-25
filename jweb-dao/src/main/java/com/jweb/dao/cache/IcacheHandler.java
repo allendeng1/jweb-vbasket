@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSONObject;
+import com.jweb.common.util.DateTimeUtil;
 import com.jweb.dao.base.BaseEntity;
 import com.jweb.dao.component.RedisComponent;
 
@@ -24,6 +25,8 @@ public class IcacheHandler<T extends BaseEntity> implements Icache<T> {
 	
 	private static final String CACHE_MARK = "datacache-";
 	
+	private static final String CACHE_DELETE_MARK = "cache-deltimer"; 
+	
 	@Override
 	@CacheReport
 	public T get(String cacheName, String cacheKey, Class<T> clazz) {
@@ -41,6 +44,9 @@ public class IcacheHandler<T extends BaseEntity> implements Icache<T> {
 		}
 		T t = null;
 		try {
+			if(cacheValue.equalsIgnoreCase("null")) {
+				return clazz.newInstance();
+			}
 			t = JSONObject.parseObject(cacheValue, clazz);
 		} catch (Exception e) {
 			log.error("获取缓存数据时出错："+cacheName+"-"+cacheKey, e);
@@ -59,16 +65,31 @@ public class IcacheHandler<T extends BaseEntity> implements Icache<T> {
 			log.warn("设置缓存数据时cacheKey为null，跳过");
 			return false;
 		}
-		if(cacheData == null || "".equals(cacheData)){
+		if("".equals(cacheData)){
 			log.warn("设置缓存数据时cacheData为null，跳过");
 			return false;
 		}
+		String nameKey = cacheName+"-"+cacheKey;
 		try {
-			String cacheValue = JSONObject.toJSONString(cacheData);
-			redisComponent.setString(CACHE_MARK+cacheName+"-"+cacheKey, cacheValue, cacheTime);
+			
+			String cacheValue = "null";
+			if(cacheData != null) {
+				Long delTime = (Long) redisComponent.getMapValue(CACHE_DELETE_MARK, nameKey);
+				if(delTime != null) {
+					//被删除的缓存数据，10秒内不写入缓存
+					//解决：事务1修改数据未提交状态的同时事务2查询数据写入缓存，导致缓存数据与数据库数据不一致的问题
+					if(DateTimeUtil.nowTime() - delTime < 10000) {
+						return true;
+					}
+					redisComponent.removeMap(CACHE_DELETE_MARK, nameKey);
+				}
+			
+				cacheValue = JSONObject.toJSONString(cacheData);
+			}
+			redisComponent.setString(CACHE_MARK+nameKey, cacheValue, cacheTime);
 			return true;
 		} catch (Exception e) {
-			log.error("设置缓存数据时出错："+cacheName+"-"+cacheKey, e);
+			log.error("设置缓存数据时出错："+nameKey, e);
 			return false;
 		}
 	}
@@ -84,11 +105,15 @@ public class IcacheHandler<T extends BaseEntity> implements Icache<T> {
 			log.warn("删除缓存数据时cacheKey为null");
 			return false;
 		}
+		String nameKey = cacheName+"-"+cacheKey;
 		try {
-			redisComponent.deleteKey(CACHE_MARK+cacheName+"-"+cacheKey);
+			
+			redisComponent.deleteKey(CACHE_MARK+nameKey);
+			//记录缓存被删除的时间
+			redisComponent.setMap(CACHE_DELETE_MARK, nameKey, DateTimeUtil.nowTime());
 			return true;
 		} catch (Exception e) {
-			log.error("删除缓存数据时出错："+cacheName+"-"+cacheKey, e);
+			log.error("删除缓存数据时出错："+nameKey, e);
 			return false;
 		}
 	}

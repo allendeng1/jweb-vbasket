@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import org.springframework.data.elasticsearch.annotations.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Transient;
@@ -32,12 +35,16 @@ public class BaseEntity implements Serializable{
 	public Long id;
 	
 	@Transient//非数据库字段
+	@JsonIgnore
 	public String customCondition;
 	@Transient//非数据库字段
+	@JsonIgnore
 	public String orderCondition;
 	@Transient//非数据库字段
+	@JsonIgnore
 	public Integer offset;
 	@Transient//非数据库字段
+	@JsonIgnore
 	public Integer limit;
 	
 	public void and(String clounmName, Object value) {

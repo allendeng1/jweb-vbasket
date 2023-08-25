@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.redisson.api.RBucket;
+import org.redisson.api.RList;
 import org.redisson.api.RLock;
 import org.redisson.api.RMap;
 import org.redisson.api.RedissonClient;
@@ -57,12 +58,26 @@ public class RedisComponent {
 		RBucket<Object> bucket = redissonClient.getBucket(key);
 		return bucket.isExists();
 	}
+	public void setList(String name, Object obj) throws RuntimeException{
+		RList<Object> rlist = redissonClient.getList(name);
+		rlist.add(obj);
+	}
+	
+	public boolean isListContains(String name, Object obj)throws RuntimeException{
+		RList<Object> rlist = redissonClient.getList(name);
+    	if(rlist == null) {
+    		return false;
+    	}
+    	
+    	return rlist.contains(obj);
+    }
 	public void setMap(String name, Map<String, Object> map, Long expireSeconds)throws RuntimeException{
 		RMap<String, Object> rmap = redissonClient.getMap(name);
 		rmap.putAll(map);
 		if(expireSeconds != null){
 			rmap.expire(expireSeconds, TimeUnit.SECONDS);
 		}
+		
 	}
 	public void setMap(String name, String field, Object value)throws RuntimeException{
 		RMap<String, Object> map = redissonClient.getMap(name);

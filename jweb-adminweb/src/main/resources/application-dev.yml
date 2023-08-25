@@ -32,4 +32,9 @@ file:
 
 #是否开启邮件服务
 email:
-  enable: true
+  enable: false
+  
+#系统防御是否开启
+watchdog:
+  ccattack:
+    enable: true

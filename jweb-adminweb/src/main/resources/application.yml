@@ -29,18 +29,10 @@ mybatis:
 auth: 
   ignore: 
     urls: 
-      2-/common/getCaptcha,
-      2-/common/checkCaptcha,
-      2-/common/upload,
-      2-/getToken,
       2-/swagger-ui,
       2-/swagger-resources,
       2-/springfox-swagger-ui,
       2-/api-doc,
-      2-/account/addUser,
-      2-/account/getUser,
-      2-/department,
-      2-/role,
-      2-/message,
-      2-/socket
+      2-/socket,
+      3-/sysconfig
       

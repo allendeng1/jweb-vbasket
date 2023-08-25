@@ -93,4 +93,18 @@ public class CommonException extends MyException{
 	public static void captchaNotMatch()throws CommonException{
 		throw new CommonException(109, "验证码不正确");
 	}
+	/**
+	 * 重复提交
+	 * @throws CommonException
+	 */
+	public static void noResubmit()throws CommonException{
+		throw new CommonException(110, "请不要重复提交");
+	}
+	/**
+	 * 数据已存在
+	 * @throws CommonException
+	 */
+	public static void dataAlreadyExists()throws CommonException{
+		throw new CommonException(111, "数据已存在，不能重复添加");
+	}
 }

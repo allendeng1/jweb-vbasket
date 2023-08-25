@@ -39,4 +39,11 @@ public class AuthException extends MyException{
 	public static void invalidToken()throws AuthException{
 		throw new AuthException(201, "无效token");
 	}
+	/**
+	 * 访问被拒绝
+	 * @throws AuthException
+	 */
+	public static void accessDenied()throws AuthException{
+		throw new AuthException(202, "访问被拒绝");
+	}
 }

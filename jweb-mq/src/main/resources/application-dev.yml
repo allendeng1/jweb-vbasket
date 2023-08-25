@@ -30,4 +30,8 @@ file:
   storage:
     site: LOCAL
 
+#系统防御是否开启
+watchdog:
+  ccattack:
+    enable: true
   

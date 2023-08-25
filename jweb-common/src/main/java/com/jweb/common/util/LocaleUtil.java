@@ -92,9 +92,8 @@ public class LocaleUtil extends DataUtil{
 	}
 	public enum Country{
 		
-		China("Chinese", "中国", TimeZone.EAST_8, "86", 11),
-		Mexico("Spanish", "墨西哥", TimeZone.WEST_5, "52", 10);
-		
+		China("Chinese", "中国", TimeZone.EAST_8, "86", 11);
+	
 		Country(String nativeLanguage, String chineseName, TimeZone timeZone, String mobileCode, int mobileLength){
 			this.nativeLanguage = nativeLanguage;
 			this.chineseName = chineseName;

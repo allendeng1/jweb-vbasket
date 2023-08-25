@@ -21,12 +21,20 @@ spring:
     name: saas_credit
     type: com.zaxxer.hikari.HikariDataSource
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/saas_credit
+    url: jdbc:postgresql://localhost:5432/jweb
     username: postgres
     password: 123456
     
 #文件存储服务：LOCAL-本地存储， ALIYUNOSS-阿里云OSS，MYSITE-自建存储服务，FTP-ftp存储服务
 file:
   storage:
-    site: LOCAL
+    site: ALIYUNOSS
+
+#是否开启邮件服务
+email:
+  enable: false
   
+#系统防御是否开启
+watchdog:
+  ccattack:
+    enable: true

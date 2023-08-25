@@ -15,6 +15,7 @@
     <module>jweb-message</module>
     <module>jweb-mq</module>
     <module>jweb-filestorage</module>
+    <module>jweb-watchdog</module>
   </modules>
   
   <parent>

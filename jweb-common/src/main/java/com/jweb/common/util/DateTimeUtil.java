@@ -420,29 +420,57 @@ public class DateTimeUtil extends DataUtil{
 		 */
 		YYYYMMDDHHMMSS_1("yyyy-MM-dd HH:mm:ss"),
 		/**
+		 * 年-月-日 时:分
+		 */
+		YYYYMMDDHHMM_1("yyyy-MM-dd HH:mm"),
+		/**
 		 * 年/月/日 时:分:秒
 		 */
 		YYYYMMDDHHMMSS_2("yyyy/MM/dd HH:mm:ss"),
+		/**
+		 * 年/月/日 时:分
+		 */
+		YYYYMMDDHHMM_2("yyyy/MM/dd HH:mm"),
 		/**
 		 * 年.月.日 时:分:秒
 		 */
 		YYYYMMDDHHMMSS_3("yyyy.MM.dd HH:mm:ss"),
 		/**
+		 * 年.月.日 时:分
+		 */
+		YYYYMMDDHHMM_3("yyyy.MM.dd HH:mm"),
+		/**
 		 * 年月日时分秒
 		 */
 		YYYYMMDDHHMMSS_4("yyyyMMddHHmmss"),
+		/**
+		 * 年月日时分
+		 */
+		YYYYMMDDHHMM_4("yyyyMMddHHmm"),
 		/**
 		 * 日-月-年 时:分:秒
 		 */
 		DDMMYYYYHHMMSS_1("dd-MM-yyyy HH:mm:ss"),
 		/**
+		 * 日-月-年 时:分
+		 */
+		DDMMYYYYHHMM_1("dd-MM-yyyy HH:mm"),
+		/**
 		 * 日/月/年 时:分:秒
 		 */
 		DDMMYYYYHHMMSS_2("dd/MM/yyyy HH:mm:ss"),
 		/**
+		 * 日/月/年 时:分
+		 */
+		DDMMYYYYHHMM_2("dd/MM/yyyy HH:mm"),
+		/**
 		 * 日.月.年 时:分:秒
 		 */
 		DDMMYYYYHHMMSS_3("dd.MM.yyyy HH:mm:ss"),
+		/**
+		 * 日.月.年 时:分
+		 */
+		DDMMYYYYHHMM_3("dd.MM.yyyy HH:mm"),
 		
 		/**
 		 * 年-月-日

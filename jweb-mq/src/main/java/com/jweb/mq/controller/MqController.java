@@ -23,6 +23,7 @@ import com.jweb.mq.message.MessageRouter;
 import com.jweb.mq.message.MessageTopic;
 import com.jweb.mq.message.MessageType;
 import com.jweb.mq.service.MqService;
+import com.jweb.watchdog.aspect.resubmit.NoResubmit;
 
 import lombok.extern.slf4j.Slf4j;
 /**
@@ -40,6 +41,7 @@ public class MqController extends BaseController implements MqApiDoc{
 	@Autowired
 	private MqService mqService;
 
+	@NoResubmit(timeInterval = 3, submittable = true)
 	@Override
 	public ApiResult publishQueueMessage(MessageType bizType, String content, String label) {
 		ApiResult result = new ApiResult();
@@ -53,6 +55,7 @@ public class MqController extends BaseController implements MqApiDoc{
 		return result;
 	}
 
+	@NoResubmit(timeInterval = 3, submittable = true)
 	@Override
 	public ApiResult publishTopicMessage(MessageTopic topic, String content) {
 		
@@ -68,6 +71,7 @@ public class MqController extends BaseController implements MqApiDoc{
 		return result;
 	}
 
+	@NoResubmit(timeInterval = 3, submittable = true)
 	@Override
 	public ApiResult publishRetryMessage(String msgIds) {
 		ApiResult result = new ApiResult();
@@ -82,6 +86,7 @@ public class MqController extends BaseController implements MqApiDoc{
 		return result;
 	}
 
+	@NoResubmit(timeInterval = 3, submittable = true)
 	@Override
 	public ApiResult deleteMessage(String msgIds) {
 		ApiResult result = new ApiResult();
@@ -96,6 +101,7 @@ public class MqController extends BaseController implements MqApiDoc{
 		return result;
 	}
 
+	@NoResubmit(timeInterval = 3, submittable = true)
 	@Override
 	public MqMessageResult messageList(MqMsgChannel channel, MessageTopic topic, MessageQueue queue, MessageType bizType,
 			Integer status, String minPublishTime, String maxPublishTime, String content, int page, int pageSize) {
@@ -138,6 +144,7 @@ public class MqController extends BaseController implements MqApiDoc{
 		return result;
 	}
 
+	@NoResubmit(timeInterval = 3, submittable = true)
 	@Override
 	public MqMessageLogResult messageLogList(Long messageId) {
 		MqMessageLogResult result = new MqMessageLogResult();

@@ -492,6 +492,30 @@ public class DataUtil extends RegularMatchUtil{
 	}
 	
 	/**
+	 * 拼接字符串
+	 * @param delimiter 分隔符
+	 * @param isIgnoreNull 是否排除null值
+	 * @param objs 
+	 * @return
+	 */
+	public static String spliceString(String delimiter, boolean isIgnoreNull, Object ...objs) {
+		boolean isDelimiter = !isNullOrEmpty(delimiter);
+		StringBuilder sb = new StringBuilder();
+		int length = objs.length;
+		for(int i=0;i<length;i++) {
+			Object obj = objs[i];
+			if(isNull(obj) && isIgnoreNull) {
+				continue;
+			}
+			sb.append(obj.toString());
+			if(isDelimiter && i+1 < length) {
+				sb.append(delimiter);
+			}
+		}
+		return sb.toString();
+	}
+	
+	/**
 	 * 拼接 http url
 	 * @param domainPrefix
 	 * @param url
