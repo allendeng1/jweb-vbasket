@@ -214,7 +214,7 @@ public class MqServiceImpl extends DataUtil implements MqService {
 			return;
 		}
 		for(MqMessage message : messages){
-			if(isNull(query.getQueueName()) && MessageQueue.valueOf(message.getQueueName()).isVipQueue()){
+			if(isNull(query.getQueueName())){
 				continue;
 			}
 			messageRouter.produceMessage(message.getId(), MessageQueue.valueOf(message.getQueueName()), MessageType.valueOf(message.getBizType()));

@@ -63,6 +63,13 @@
 		    <artifactId>aliyun-sdk-oss</artifactId>
 		</dependency>
 		<dependency>
+		    <groupId>opencv</groupId>
+		    <artifactId>opencv</artifactId>
+		    <version>460</version>
+		    <scope>system</scope>
+		    <systemPath>${project.basedir}/src/main/resources/opencv/opencv-460.jar</systemPath>
+		</dependency>
+		<dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
             <version>3.17</version>
